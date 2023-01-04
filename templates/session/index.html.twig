@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+<h1>Listes des sessions :</h1>
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Session</th>
+            <th scope="col">Formation</th>
+            <th scope="col">Date de debut</th>
+            <th scope="col">Date de fin</th>
+            <th scope="col">nombre de place</th>
+            <th scope="col">action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        <tr>
+            <th scope="row">{{session.intituleSession}}</th>
+            <td>{{session.Formation}}</td>
+            <td>{{session.dateDebut|date("m/d/Y")}}</td>
+            <td>{{session.dateFin|date("m/d/Y")}}</td>
+            <td>{{session.nombrePlace}}</td>
+            <td><button type="button" class="btn btn-warning">edit</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

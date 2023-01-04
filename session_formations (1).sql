@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 04 jan. 2023 à 10:49
+-- Généré le : mer. 04 jan. 2023 à 10:54
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -100,7 +100,8 @@ CREATE TABLE `messenger_messages` (
 
 CREATE TABLE `module_session` (
   `id` int(11) NOT NULL,
-  `intitule_module` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+  `intitule_module` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categorie_module_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -111,7 +112,9 @@ CREATE TABLE `module_session` (
 
 CREATE TABLE `programme` (
   `id` int(11) NOT NULL,
-  `duree` int(11) NOT NULL
+  `duree` int(11) NOT NULL,
+  `session_id` int(11) DEFAULT NULL,
+  `module_session_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -126,7 +129,19 @@ CREATE TABLE `session` (
   `nombre_place` int(11) NOT NULL,
   `date_debut` datetime NOT NULL,
   `date_fin` datetime NOT NULL,
-  `formation_id` int(11) NOT NULL
+  `formation_id` int(11) NOT NULL,
+  `formateur_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `session_stagiaire`
+--
+
+CREATE TABLE `session_stagiaire` (
+  `session_id` int(11) NOT NULL,
+  `stagiaire_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -189,20 +204,32 @@ ALTER TABLE `messenger_messages`
 -- Index pour la table `module_session`
 --
 ALTER TABLE `module_session`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_7B3FEBCD29DBA96` (`categorie_module_id`);
 
 --
 -- Index pour la table `programme`
 --
 ALTER TABLE `programme`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_3DDCB9FF613FECDF` (`session_id`),
+  ADD KEY `IDX_3DDCB9FFF4DAC742` (`module_session_id`);
 
 --
 -- Index pour la table `session`
 --
 ALTER TABLE `session`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `IDX_D044D5D45200282E` (`formation_id`);
+  ADD KEY `IDX_D044D5D45200282E` (`formation_id`),
+  ADD KEY `IDX_D044D5D4155D8F51` (`formateur_id`);
+
+--
+-- Index pour la table `session_stagiaire`
+--
+ALTER TABLE `session_stagiaire`
+  ADD PRIMARY KEY (`session_id`,`stagiaire_id`),
+  ADD KEY `IDX_C80B23B613FECDF` (`session_id`),
+  ADD KEY `IDX_C80B23BBBA93DD6` (`stagiaire_id`);
 
 --
 -- Index pour la table `stagiaire`
@@ -267,10 +294,31 @@ ALTER TABLE `stagiaire`
 --
 
 --
+-- Contraintes pour la table `module_session`
+--
+ALTER TABLE `module_session`
+  ADD CONSTRAINT `FK_7B3FEBCD29DBA96` FOREIGN KEY (`categorie_module_id`) REFERENCES `categorie_module` (`id`);
+
+--
+-- Contraintes pour la table `programme`
+--
+ALTER TABLE `programme`
+  ADD CONSTRAINT `FK_3DDCB9FF613FECDF` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`),
+  ADD CONSTRAINT `FK_3DDCB9FFF4DAC742` FOREIGN KEY (`module_session_id`) REFERENCES `module_session` (`id`);
+
+--
 -- Contraintes pour la table `session`
 --
 ALTER TABLE `session`
+  ADD CONSTRAINT `FK_D044D5D4155D8F51` FOREIGN KEY (`formateur_id`) REFERENCES `formateur` (`id`),
   ADD CONSTRAINT `FK_D044D5D45200282E` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id`);
+
+--
+-- Contraintes pour la table `session_stagiaire`
+--
+ALTER TABLE `session_stagiaire`
+  ADD CONSTRAINT `FK_C80B23B613FECDF` FOREIGN KEY (`session_id`) REFERENCES `session` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_C80B23BBBA93DD6` FOREIGN KEY (`stagiaire_id`) REFERENCES `stagiaire` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
