@@ -15,14 +15,19 @@
 
 </head>
 <nav>
+    <div class="nav_left">
+        <p>hello <span>Mohamed</span></p>
+    </div>
+    {# <div class="nav_midle">
+        <h1>Centre de Formation<h1>
+    </div> #}
     <ul>
         <li><a href="{{path ('app_session')}}"> Sessions</a></li>
-        <li>Stagiaires</li>
+        <li><a href="{{path ('app_stagiaire')}}">Stagiaires</a></li>
     </ul>
 </nav>
 
 <body>
-    <h1>hello mohamed</h1>
     {% block body %}
 
     {% endblock %}
