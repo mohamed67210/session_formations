@@ -4,28 +4,46 @@
 
 {% block body %}
 <h1>Listes des sessions :</h1>
-<table class="table table-striped table-dark">
+<table class="table table-striped ">
     <thead>
         <tr>
             <th scope="col">Session</th>
+            <th scope="col">Statut</th>
             <th scope="col">Formation</th>
             <th scope="col">Date de debut</th>
             <th scope="col">Date de fin</th>
-            <th scope="col">nombre de place</th>
+            <th scope="col">Place reservée</th>
+            <th scope="col">Porgramme</th>
             <th scope="col">action</th>
         </tr>
     </thead>
     <tbody>
         {% for session in sessions %}
+
         <tr>
-            <th scope="row">{{session.intituleSession}}</th>
+            <th scope="row">{{session.intituleSession}}
+                {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
+                    {% else %}
+                    <p>(Compléte)</p>
+                    {% endif %}
+            </th>
+            <td>
+                {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
+                    (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
+                    A venir
+                    {% else %} passée {% endif %} </td>
             <td>{{session.Formation}}</td>
             <td>{{session.dateDebut|date("m/d/Y")}}</td>
             <td>{{session.dateFin|date("m/d/Y")}}</td>
-            <td>{{session.nombrePlace}}</td>
+            <td>
+                {{session.stagiaires|length}}/{{session.nombrePlace}}
+            </td>
+            <td><a href="#">Voir</a></td>
             <td><button type="button" class="btn btn-warning">edit</button></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
+
 {% endblock %}

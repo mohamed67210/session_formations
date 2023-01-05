@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Session;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,28 +40,63 @@ class SessionRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Session[] Returns an array of Session objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findPastSession()
+    {
+        $now = new DateTime();
+        // requete dql
+        return $this->createQueryBuilder('s')
+            ->Where('s.dateFin < :now')
+            ->orderBy('s.dateDebut', 'ASC')
+            ->setParameter('now',$now)
+            ->getQuery()
+            ->getResult();
+    }
+    public function findfuturSession()
+    {
+        $now = new DateTime();
+        // requete dql
+        return $this->createQueryBuilder('s')
+            ->Where('s.dateDebut > :now')
+            ->orderBy('s.dateDebut', 'ASC')
+            ->setParameter('now',$now)
+            ->getQuery()
+            ->getResult();
+    }
+    public function findProgressSession()
+    {
+        $now = new DateTime();
+        // requete dql
+        return $this->createQueryBuilder('s')
+            ->where('s.dateDebut < :now')
+            ->andWhere('s.dateFin > :now')
+            ->orderBy('s.dateDebut', 'ASC')
+            ->setParameter('now',$now)
+            ->getQuery()
+            ->getResult();
+    }
 
-//    public function findOneBySomeField($value): ?Session
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Session[] Returns an array of Session objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('s.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Session
+    //    {
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
