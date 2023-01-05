@@ -4,138 +4,142 @@
 
 {% block body %}
 <div id="container">
-    <h1>Listes des sessions passées :</h1>
-    {% if pastSession|length > 0 %}
-    <table class="table table-striped ">
-        <thead>
-            <tr>
-                <th scope="col">Session</th>
-                <th scope="col">Statut</th>
-                <th scope="col">Formation</th>
-                <th scope="col">Date de debut</th>
-                <th scope="col">Date de fin</th>
-                <th scope="col">Place reservée</th>
-                <th scope="col">Porgramme</th>
-                <th scope="col">action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for session in pastSession %}
+    <div class="listSession">
+        <h2>Listes des sessions passées :</h2>
+        {% if pastSession|length > 0 %}
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th scope="col">Session</th>
+                    <th scope="col">Statut</th>
+                    <th scope="col">Formation</th>
+                    <th scope="col">Date de debut</th>
+                    <th scope="col">Date de fin</th>
+                    <th scope="col">Place reservée</th>
+                    <th scope="col">Porgramme</th>
+                    <th scope="col">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in pastSession %}
 
-            <tr>
-                <th scope="row">{{session.intituleSession}}
-                    {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
-                        {% else %}
-                        <p>(Compléte)</p>
-                        {% endif %}
-                </th>
-                <td>
-                    {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
-                        (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
-                        A venir
-                        {% else %} passée {% endif %} </td>
-                <td>{{session.Formation}}</td>
-                <td>{{session.dateDebut|date("m/d/Y")}}</td>
-                <td>{{session.dateFin|date("m/d/Y")}}</td>
-                <td>
-                    {{session.stagiaires|length}}/{{session.nombrePlace}}
-                </td>
-                <td><a href="#">Voir</a></td>
-                <td><button type="button" class="btn btn-warning">edit</button></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}<h3>pas de session</h3>
-    {% endif %}
-
-    <h1>Listes des sessions en cours :</h1>
-    {% if progressSession|length > 0 %}
-    <table class="table table-striped ">
-        <thead>
-            <tr>
-                <th scope="col">Session</th>
-                <th scope="col">Statut</th>
-                <th scope="col">Formation</th>
-                <th scope="col">Date de debut</th>
-                <th scope="col">Date de fin</th>
-                <th scope="col">Place reservée</th>
-                <th scope="col">Porgramme</th>
-                <th scope="col">action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for session in progressSession %}
-            <tr>
-                <th scope="row">{{session.intituleSession}}
-                    {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
-                        {% else %}
-                        <p>(Compléte)</p>
-                        {% endif %}
-                </th>
-                <td>
-                    {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
-                        (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
-                        A venir
-                        {% else %} passée {% endif %} </td>
-                <td>{{session.Formation}}</td>
-                <td>{{session.dateDebut|date("m/d/Y")}}</td>
-                <td>{{session.dateFin|date("m/d/Y")}}</td>
-                <td>
-                    {{session.stagiaires|length}}/{{session.nombrePlace}}
-                </td>
-                <td><a href="#">Voir</a></td>
-                <td><button type="button" class="btn btn-warning">edit</button></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}<h3>pas de session</h3>
-    {% endif %}
-
-    <h1>Listes des sessions à venir :</h1>
-    {% if futurSession|length > 0 %}
-    <table class="table table-striped ">
-        <thead>
-            <tr>
-                <th scope="col">Session</th>
-                <th scope="col">Statut</th>
-                <th scope="col">Formation</th>
-                <th scope="col">Date de debut</th>
-                <th scope="col">Date de fin</th>
-                <th scope="col">Place reservée</th>
-                <th scope="col">Porgramme</th>
-                <th scope="col">action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for session in futurSession %}
-            <tr>
-                <th scope="row">{{session.intituleSession}}
-                    {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
-                        {% else %}
-                        <p>(Compléte)</p>
-                        {% endif %}
-                </th>
-                <td>
-                    {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
-                        (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
-                        A venir
-                        {% else %} passée {% endif %} </td>
-                <td>{{session.Formation}}</td>
-                <td>{{session.dateDebut|date("m/d/Y")}}</td>
-                <td>{{session.dateFin|date("m/d/Y")}}</td>
-                <td>
-                    {{session.stagiaires|length}}/{{session.nombrePlace}}
-                </td>
-                <td><a href="#">Voir</a></td>
-                <td><button type="button" class="btn btn-warning">edit</button></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}<h3>pas de session</h3>
-    {% endif %}
+                <tr>
+                    <th scope="row">{{session.intituleSession}}
+                        {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
+                            {% else %}
+                            <p>(Compléte)</p>
+                            {% endif %}
+                    </th>
+                    <td>
+                        {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
+                            (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
+                            A venir
+                            {% else %} passée {% endif %} </td>
+                    <td>{{session.Formation}}</td>
+                    <td>{{session.dateDebut|date("m/d/Y")}}</td>
+                    <td>{{session.dateFin|date("m/d/Y")}}</td>
+                    <td>
+                        {{session.stagiaires|length}}/{{session.nombrePlace}}
+                    </td>
+                    <td><a href="#">Voir</a></td>
+                    <td><button type="button" class="btn btn-warning">edit</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}<div class="error">pas de session</div>
+        {% endif %}
+    </div>
+    <div class="listSession">
+        <h2>Listes des sessions en cours :</h2>
+        {% if progressSession|length > 0 %}
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th scope="col">Session</th>
+                    <th scope="col">Statut</th>
+                    <th scope="col">Formation</th>
+                    <th scope="col">Date de debut</th>
+                    <th scope="col">Date de fin</th>
+                    <th scope="col">Place reservée</th>
+                    <th scope="col">Porgramme</th>
+                    <th scope="col">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in progressSession %}
+                <tr>
+                    <th scope="row">{{session.intituleSession}}
+                        {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
+                            {% else %}
+                            <p>(Compléte)</p>
+                            {% endif %}
+                    </th>
+                    <td>
+                        {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
+                            (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
+                            A venir
+                            {% else %} passée {% endif %} </td>
+                    <td>{{session.Formation}}</td>
+                    <td>{{session.dateDebut|date("m/d/Y")}}</td>
+                    <td>{{session.dateFin|date("m/d/Y")}}</td>
+                    <td>
+                        {{session.stagiaires|length}}/{{session.nombrePlace}}
+                    </td>
+                    <td><a href="#">Voir</a></td>
+                    <td><button type="button" class="btn btn-warning">edit</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}<div class="error">pas de session</div>
+        {% endif %}
+    </div>
+    <div class="listSession">
+        <h2>Listes des sessions à venir :</h2>
+        {% if futurSession|length > 0 %}
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th scope="col">Session</th>
+                    <th scope="col">Statut</th>
+                    <th scope="col">Formation</th>
+                    <th scope="col">Date de debut</th>
+                    <th scope="col">Date de fin</th>
+                    <th scope="col">Place reservée</th>
+                    <th scope="col">Porgramme</th>
+                    <th scope="col">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in futurSession %}
+                <tr>
+                    <th scope="row">{{session.intituleSession}}
+                        {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
+                            {% else %}
+                            <p>(Compléte)</p>
+                            {% endif %}
+                    </th>
+                    <td>
+                        {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
+                            (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
+                            A venir
+                            {% else %} passée {% endif %} </td>
+                    <td>{{session.Formation}}</td>
+                    <td>{{session.dateDebut|date("m/d/Y")}}</td>
+                    <td>{{session.dateFin|date("m/d/Y")}}</td>
+                    <td>
+                        {{session.stagiaires|length}}/{{session.nombrePlace}}
+                    </td>
+                    <td><a href="#">Voir</a></td>
+                    <td><button type="button" class="btn btn-warning">edit</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}<div class="error">pas de session</div>
+        {% endif %}
+    </div>
 </div>
 
 {% endblock %}
