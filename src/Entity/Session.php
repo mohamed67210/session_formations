@@ -178,4 +178,8 @@ class Session
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->intituleSession;
+    }
 }

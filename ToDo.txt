@@ -1,0 +1,1 @@
+afficher session : intitule de la session + formateur referent + liste des stagiaires + bouton ajouter stagiaire

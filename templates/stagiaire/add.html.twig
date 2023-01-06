@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+
+{{ form_start(formAddStagiaire) }}
+{{ form_row(formAddStagiaire.nomStagiaire) }}
+{{ form_row(formAddStagiaire.prenomStagiaire) }}
+{{ form_row(formAddStagiaire.dateNaissanceStagiaire) }}
+{{ form_row(formAddStagiaire.sexeStagiaire) }}
+{{ form_row(formAddStagiaire.villeStagiaire) }}
+{{ form_row(formAddStagiaire.cpStagiaire) }}
+{{ form_row(formAddStagiaire.adresseStagiaire) }}
+{{ form_row(formAddStagiaire.mailStagiaire) }}
+{{ form_row(formAddStagiaire.telephoneStagiaire) }}
+{# {{ form_row(formAddStagiaire.sessions) }} #}
+
+
+{{ form_row(formAddStagiaire.submit, { 'label': 'Submit me' }) }}
+{{ form_end(formAddStagiaire) }}
+
+{% endblock %}

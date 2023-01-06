@@ -50,17 +50,18 @@ body {
 }
 
 .listSession {
-    border: 1px solid #77C3F2;
+    border: 1px solid white;
     padding: 1rem;
+    /* background-color: #262626; */
 }
 
-h2 {
-    text-align: center;
+h3 {
+    color: #262626;
 }
 
 table thead tr {
     color: white;
-    background-color: #77C3F2 !important;
+    background-color: #262626 !important;
 }
 
 table tbody tr {

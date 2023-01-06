@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+<div id="container">
+    <ul>
+        <li>Intitulé :{{session.intituleSession}}</li>
+        <li>Date de debut :{{session.dateDebut |date("m/d/Y")}}</li>
+        <li>Date de fin :{{session.dateFin |date("m/d/Y")}}</li>
+        <li>Formateur : {{session.formateur}}</li>
+        <ul>
+            liste de stagiaires :
+            {% for stagiaire in session.stagiaires %}
+            <li><a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire}}</a></li>
+            {% endfor %}
+            <a href="{{ path('add_stagiaire' )}}">Ajouter satgiaire</a>
+        </ul>
+    </ul>
+</div>
+
+{% endblock %}

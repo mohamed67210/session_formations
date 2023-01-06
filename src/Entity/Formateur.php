@@ -117,4 +117,9 @@ class Formateur
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->prenomFormateur . ' ' . $this->nomFormateur;
+    }
 }

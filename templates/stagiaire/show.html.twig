@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello !{% endblock %}
+
+{% block body %}
+<div id="container">
+    <label>{{stagiaire}}</label><br>
+    <label>date de naissance :{{stagiaire.dateNaissanceStagiaire|date("m/d/Y")}}</label><br>
+
+</div>
+
+{% endblock %}
