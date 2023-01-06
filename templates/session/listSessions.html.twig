@@ -25,9 +25,10 @@
 
                 <tr>
                     <th scope="row">{{session.intituleSession}}
-                        {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
+                        {% if (session.stagiaires|length) < session.nombrePlace %}<br><label
+                                class="green">Disponible</label>
                             {% else %}
-                            <p>(Compléte)</p>
+                            <label class="red">Compléte</label>
                             {% endif %}
                     </th>
                     <td>
@@ -70,9 +71,10 @@
                 {% for session in progressSession %}
                 <tr>
                     <th scope="row">{{session.intituleSession}}
-                        {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
+                        {% if (session.stagiaires|length) < session.nombrePlace %} <br><label
+                                class="green">Disponible</label>
                             {% else %}
-                            <p>(Compléte)</p>
+                            <label class="red">Compléte</label>
                             {% endif %}
                     </th>
                     <td>
@@ -115,9 +117,10 @@
                 {% for session in futurSession %}
                 <tr>
                     <th scope="row">{{session.intituleSession}}
-                        {% if (session.stagiaires|length) < session.nombrePlace %} <p>(Disponible)</p>
+                        {% if (session.stagiaires|length) < session.nombrePlace %} <br><label
+                                class="green">Disponible</label>
                             {% else %}
-                            <p>(Compléte)</p>
+                            <label class="red">Compléte</label>
                             {% endif %}
                     </th>
                     <td>
