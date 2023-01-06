@@ -134,7 +134,7 @@
                     <td>
                         {{session.stagiaires|length}}/{{session.nombrePlace}}
                     </td>
-                    <td><a href="#">Voir</a></td>
+                    <td><a href="{{ path('show_programme' , {'id':session.id} ) }}">Voir</a></td>
                     <td><button type="button" class="btn btn-warning">edit</button></td>
                 </tr>
                 {% endfor %}
@@ -144,5 +144,6 @@
         {% endif %}
     </div>
 </div>
+
 
 {% endblock %}

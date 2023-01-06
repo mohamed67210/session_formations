@@ -12,19 +12,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SessionController extends AbstractController
 {
 
-    // pour afficher liste des entreprise
-    #[Route('/home', name: 'app_session')]
-    public function index(ManagerRegistry $doctrine): Response
+    #[Route('/session/{id}', name: 'show_session')]
+    public function show(Session $session): Response
     {
-
-        // recuperer tte les sessions de la bdd
-        $repository = $doctrine->getRepository(Session::class);
-        $sessions = $repository->findBy([], ['dateDebut' => 'DESC']);
-        return $this->render('session/index.html.twig', [
-            'sessions' => $sessions,
+        return $this->render('entreprise/show.html.twig', [
+            'session' => $session,
         ]);
     }
+    //  //pour afficher liste des sessions ensemble 
+    // #[Route('/home', name: 'app_session')]
+    // public function index(ManagerRegistry $doctrine): Response
+    // {
 
+    //     // recuperer tte les sessions de la bdd
+    //     $repository = $doctrine->getRepository(Session::class);
+    //     $sessions = $repository->findBy([], ['dateDebut' => 'DESC']);
+    //     return $this->render('session/index.html.twig', [
+    //         'sessions' => $sessions,
+    //     ]);
+    // }
+    // pour afficher liste des entreprise separer(en cours,a venir,passée)
     #[Route('/list', name: 'list_session')]
     public function list(SessionRepository $sr): Response
     {
