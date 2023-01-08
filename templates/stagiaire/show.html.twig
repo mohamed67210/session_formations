@@ -4,8 +4,19 @@
 
 {% block body %}
 <div id="container">
-    <label>{{stagiaire}}</label><br>
-    <label>date de naissance :{{stagiaire.dateNaissanceStagiaire|date("m/d/Y")}}</label><br>
+    <h3>Fiche de stagiaire : {{stagiaire}}</h3>
+    <label>Nom : {{stagiaire.nomStagiaire}}</label><br>
+    <label>Prenom : {{stagiaire.prenomStagiaire}}</label><br>
+    <label>Sexe : {{stagiaire.sexeStagiaire}}</label><br>
+    <label>Date de naissance : {{stagiaire.dateNaissanceStagiaire|date("m/d/Y")}}</label><br>
+    <label>Adresse : {{stagiaire.adresseStagiaire}} {{stagiaire.cpStagiaire}} {{stagiaire.villeStagiaire}}</label><br>
+    <label>Prenom : {{stagiaire.prenomStagiaire}}</label><br>
+    <label>Mail : {{stagiaire.mailStagiaire}}</label><br>
+    <label>Ce stagiaire est inscrit a la session : {% for session in stagiaire.sessions %}
+        <a href="{{path('show_session',{'id':session.id})}}">{{session}}</a>
+        {% endfor %}</label><br>
+
+
 
 </div>
 

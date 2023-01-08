@@ -2,21 +2,25 @@
 {% block title %}Hello !{% endblock %}
 
 {% block body %}
-
+<div id="container">
+    <h3>+ Nouveau stagiaire </h3>
+<div id="iputes_container">
 {{ form_start(formAddStagiaire) }}
-{{ form_row(formAddStagiaire.nomStagiaire) }}
-{{ form_row(formAddStagiaire.prenomStagiaire) }}
-{{ form_row(formAddStagiaire.dateNaissanceStagiaire) }}
-{{ form_row(formAddStagiaire.sexeStagiaire) }}
-{{ form_row(formAddStagiaire.villeStagiaire) }}
-{{ form_row(formAddStagiaire.cpStagiaire) }}
-{{ form_row(formAddStagiaire.adresseStagiaire) }}
-{{ form_row(formAddStagiaire.mailStagiaire) }}
-{{ form_row(formAddStagiaire.telephoneStagiaire) }}
-{# {{ form_row(formAddStagiaire.sessions) }} #}
+<div class="input_container">Nom :<br>{{ form_row(formAddStagiaire.nomStagiaire, { 'label': ' ' }) }}</div>
+<div class="input_container">Prenom :<br>{{ form_row(formAddStagiaire.prenomStagiaire ,{ 'label': ' ' }) }}</div>
+<div class="input_container">Date Naissance :<br>{{ form_row(formAddStagiaire.dateNaissanceStagiaire,{ 'label': ' ' }) }}</div>
+<div class="input_container">Sexe :<br>{{ form_row(formAddStagiaire.sexeStagiaire,{ 'label': ' ' }) }}</div>
+<div class="input_container">Ville :{{ form_row(formAddStagiaire.villeStagiaire,{ 'label': ' ' }) }}</div>
+<div class="input_container">Code postale :{{ form_row(formAddStagiaire.cpStagiaire,{ 'label': ' ' }) }}</div>
+<div class="input_container">Adresse :{{ form_row(formAddStagiaire.adresseStagiaire,{ 'label': ' ' }) }}</div>
+<div class="input_container">Mail :{{ form_row(formAddStagiaire.mailStagiaire,{ 'label': ' ' }) }}</div>
+<div class="input_container">Télephone :{{ form_row(formAddStagiaire.telephoneStagiaire,{ 'label': ' ' }) }}</div>
+{{ form_row(formAddStagiaire.sessions) }}
 
 
-{{ form_row(formAddStagiaire.submit, { 'label': 'Submit me' }) }}
+{{ form_row(formAddStagiaire.submit, { 'label': 'Enregistrer' }) }}
 {{ form_end(formAddStagiaire) }}
+</div>
+</div>
 
 {% endblock %}

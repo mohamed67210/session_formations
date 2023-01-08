@@ -21,7 +21,8 @@
             <td>{{stagiaire}}</td>
             <td>{{stagiaire.mailStagiaire}}</td>
             <td>{{stagiaire.telephoneStagiaire}}</td>
-            <td><button type="button" class="btn btn-secondary">voir</button></td>
+            <td><a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}"><button type="button"
+                        class="btn btn-secondary">voir</button></a></td>
         </tr>
         {% endfor %}
     </tbody>

@@ -4,6 +4,7 @@
 
 {% block body %}
 <div id="container">
+    <h3>information sur la session : {{session.intituleSession}}</h3>
     <ul>
         <li>Intitulé :{{session.intituleSession}}</li>
         <li>Date de debut :{{session.dateDebut |date("m/d/Y")}}</li>

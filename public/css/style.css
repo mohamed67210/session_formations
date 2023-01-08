@@ -47,18 +47,25 @@ body {
 /* liste des sessions */
 #container {
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .listSession {
     border: 1px solid white;
     padding: 1rem;
     /* background-color: #262626; */
+    width: 90%;
 }
 
 h3 {
     color: #262626;
 }
-
+table{
+    width: 100%;
+}
 table thead tr {
     color: white;
     background-color: #262626 !important;
@@ -74,7 +81,8 @@ table tbody tr {
     padding: 0.1rem;
     font-size: small;
 }
-.green{
+
+.green {
     background-color: green;
     padding: 0.1rem;
     font-size: small;
@@ -83,4 +91,31 @@ table tbody tr {
 .error {
     color: red;
     text-align: center;
+}
+
+/* formtytype Addstagiaire  */
+/* les input */
+#iputes_container{
+    padding: 1rem;
+    background-color: #77C3F2;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+.input_container {
+    margin-bottom: 0.3rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid white;
+    /* background-color: #594D48; */
+    width: 95%;
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
 }
