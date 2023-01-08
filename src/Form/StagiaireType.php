@@ -36,9 +36,9 @@ class StagiaireType extends AbstractType
             ->add('adresseStagiaire', TextType::class, ['attr' => ['class' => 'input']])
             ->add('mailStagiaire', TextType::class, ['attr' => ['class' => 'input']])
             ->add('telephoneStagiaire', NumberType::class, ['attr' => ['class' => 'input']])
-            ->add('sessions', EntityType::class, [
-                'class' => Session::class, 'attr' => ['class' => 'form-control']
-            ])
+            // ->add('sessions', EntityType::class, [
+            //     'class' => Session::class, 'attr' => ['class' => 'form-control']
+            // ])
             ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-success'], 'label' => 'ok']);;
     }
 
