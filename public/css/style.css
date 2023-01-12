@@ -1,3 +1,8 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 nav {
     background-color: #77C3F2;
     display: flex;
@@ -51,6 +56,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 3rem;
 }
 
 .listSession {
@@ -60,32 +66,80 @@ body {
     width: 90%;
 }
 
-h3 {
+h3,h4 {
     color: #262626;
 }
-table{
-    width: 100%;
+
+label {
+
+    color: white;
 }
+
+table {
+    padding: 0;
+    background-color: #77C3F2;
+    border: none;
+    width: 100%;
+    box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
+    -webkit-box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
+    -moz-box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
+}
+
 table thead tr {
     color: white;
     background-color: #262626 !important;
 }
 
-table tbody tr {
+table thead th {
+    text-align: center;
+    padding: 0.8rem;
+}
+
+tbody tr {
+    background-color: #77C3F2;
+}
+
+tr {
     color: white;
     background-color: #77C3F2 !important;
 }
 
-.red {
-    background-color: red;
-    padding: 0.1rem;
-    font-size: small;
+td {
+    padding: 0.8rem;
+    text-align: center;
+    min-height: 60px;
 }
 
 .green {
     background-color: green;
-    padding: 0.1rem;
+    padding: 0.3rem;
     font-size: small;
+    color: white;
+    border-radius: 5px;
+}
+
+.red {
+    background-color: red;
+    padding: 0.3rem;
+    font-size: small;
+    color: white;
+    border-radius: 5px;
+}
+
+.grey {
+    background-color: grey;
+    padding: 0.3rem;
+    font-size: small;
+    color: white;
+    border-radius: 5px;
+}
+
+.yellow {
+    background-color: yellow;
+    padding: 0.3rem;
+    font-size: small;
+    color: white;
+    border-radius: 5px;
 }
 
 .error {
@@ -93,16 +147,34 @@ table tbody tr {
     text-align: center;
 }
 
+#btn_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    height: 80%;
+}
+
 /* formtytype Addstagiaire  */
+/* le div qui contient les formulaire et autres en option */
+.option{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #594D48; */
+    width: 100%;
+}
 /* les input */
-#iputes_container{
+#inputes_container {
     padding: 1rem;
-    background-color: #77C3F2;
+    background-color: #77c3f273;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 30%;
 }
+
 .input_container {
     margin-bottom: 0.3rem;
     padding: 0.5rem;
@@ -111,11 +183,92 @@ table tbody tr {
     justify-content: center;
     border-bottom: 1px solid white;
     /* background-color: #594D48; */
-    width: 95%;
+    width: 90%;
 }
 
 .input {
     display: flex;
     flex-direction: row;
-    width: 40%;
+    width: 100%;
+}
+
+/* pour page detail stagiaire et session */
+.detail_container {
+    margin-top: 2rem;
+    background-color: #77c3f27e;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 50%;
+}
+
+/* detail session */
+/* liste stagiaire non inscrit */
+#li_nonInscrit {
+    position: relative;
+    padding: 0.2rem;
+    border-radius: 3px;
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+#inscrire_btn {
+    position: absolute;
+    right: 0.2rem;
+}
+
+.titre {
+    display: flex;
+    flex-direction: row;
+}
+
+.nombre {
+    background-color: #594D48;
+    color: white;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-small;
+    margin-bottom: 0.3rem;
+}
+
+/* page form programme */
+#form_programme {
+    background-color: #77C3F2;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 5px;
+}
+
+/* page formation */
+#list_session_formation {
+    background-color: #77c3f273;
+    padding: 2rem;
+    border-radius: 5px;
+    color: white;
+}
+
+h5 {
+    color: #262626;
+}
+
+h5 span {
+    font-size: medium;
+    color: green;
 }

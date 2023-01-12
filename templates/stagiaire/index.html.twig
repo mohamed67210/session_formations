@@ -3,28 +3,35 @@
 {% block title %}Hello StagiaireController!{% endblock %}
 
 {% block body %}
-<h1>Liste des stagiaires</h1>
-<table class="table table-striped ">
-    <thead>
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">nom et prenom</th>
-            <th scope="col">mail</th>
-            <th scope="col">téléphne</th>
-            <th scope="col">détail</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for stagiaire in stagiaires %}
-        <tr>
-            <th scope="row">{{stagiaire.id}}</th>
-            <td>{{stagiaire}}</td>
-            <td>{{stagiaire.mailStagiaire}}</td>
-            <td>{{stagiaire.telephoneStagiaire}}</td>
-            <td><a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}"><button type="button"
-                        class="btn btn-secondary">voir</button></a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div id="container">
+    <h1>Liste des stagiaires <a href="{{ path('add_stagiaire' )}}">+</a></h1>
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">nom et prenom</th>
+                <th scope="col">mail</th>
+                <th scope="col">téléphne</th>
+                <th scope="col">détail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stagiaire in stagiaires %}
+            <tr>
+                <th scope="row">{{stagiaire.id}}</th>
+                <td><a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire}}</a></td>
+                <td>{{stagiaire.mailStagiaire}}</td>
+                <td>{{stagiaire.telephoneStagiaire}}</td>
+                <td>
+                    <div id="btn_container">
+                        <a class="green" href="#">Sessions</a>
+                        <a class="grey" href="#">Edit</a>
+                        <a class="red" href="#">Supprimer</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

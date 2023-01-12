@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formateur{% endblock %}
+
+{% block body %}
+<div id="container">
+    <h1>Liste des formateurs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Foramateur</th>
+                <th>Mail</th>
+                <th>Téléphone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for formateur in formateurs %}
+            <tr>
+                <th>{{formateur}}</th>
+                <td>{{formateur.mailFormateur}}</td>
+                <td>{{formateur.telephoneFormateur}}</td>
+                <td>
+                    <div id="btn_container">
+                        <a class="green" href="{{path('list_sessionFormateur',{'id':formateur.id})}}">Sessions</a>
+                        <a class="grey" href="#">Edit</a>
+                        <a class="red" href="">Supprimer</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="option">
+        <div id="inputes_container">
+            <h4>Nouveau Formateur </h4><br>
+            {{form_start(formAddFormateur)}}
+            {{form_end(formAddFormateur)}}
+        </div>
+
+        {% if oneFormateur %}
+        <div class="detail_container">
+
+            <div class="titre">
+                <h4>Sessions </h4>
+                {# <div class="nombre">{{formateur.sessions|length}}</div> #}
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Formation</th>
+                        <th>Session</th>
+                        {# <th>statut</th> #}
+                        <th>date de debut</th>
+                        <th>date de fin</th>
+                        <th>Nombre place</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for session in oneFormateur.sessions %}
+
+                    <tr>
+                        <th>{{session.formation}}</th>
+                        <td><a href="">{{session.intituleSession}}</a></td>
+                        {# <td>{{session}}</td> #}
+                        <td>{{session.dateDebut|date("m/d/Y")}}</td>
+                        <td>{{session.dateFin|date("m/d/Y")}}</td>
+                        <td>{{session.stagiaires|length}}/{{session.nombrePlace}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

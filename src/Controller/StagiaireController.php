@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StagiaireController extends AbstractController
 {
+    //inscrire stagiaire a une session
     //ajouter stagiaire
     #[Route('/stagiaire/add', name: 'add_stagiaire')]
     public function add(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, Request $request)

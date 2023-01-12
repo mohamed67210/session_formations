@@ -5,19 +5,36 @@
 {% block body %}
 <div id="container">
     <h3>information sur la session : {{session.intituleSession}}</h3>
-    <ul>
-        <li>Intitulé :{{session.intituleSession}}</li>
-        <li>Date de debut :{{session.dateDebut |date("m/d/Y")}}</li>
-        <li>Date de fin :{{session.dateFin |date("m/d/Y")}}</li>
-        <li>Formateur : {{session.formateur}}</li>
-        <ul>
-            liste de stagiaires :
-            {% for stagiaire in session.stagiaires %}
-            <li><a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire}}</a></li>
-            {% endfor %}
-            <a href="{{ path('add_stagiaire' )}}">Ajouter satgiaire</a>
-        </ul>
-    </ul>
+    <div class="detail_container">
+
+        <label>Intitulé :{{session.intituleSession}}</label>
+        <label>Date de debut :{{session.dateDebut |date("m/d/Y")}}</label>
+        <label>Date de fin :{{session.dateFin |date("m/d/Y")}}</label>
+        <label>Formateur : {{session.formateur}}</label>
+        <label>nombre de place reservé : {{session.stagiaires|length}}/{{session.nombrePlace}}</label>
+
+        <br>Liste de stagiaires inscrit:
+        {% for stagiaire in session.stagiaires %}
+        <li id="li_nonInscrit">
+            <a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire}}</a>
+            {% if session.dateFin |date("m/d/Y") > 'now'|date("m/d/Y") %}
+            <a id="inscrire_btn"
+                href="{{ path('desinscrire_stagiaire', {'id':session.id , 'idStagiaire':stagiaire.id} )}}">-</a>
+            {% endif %}
+
+        </li>
+        {% endfor %}
+        <br>Liste de stagiaires non inscrit :
+        {% for nonInscrit in stagiairesNonInscrit %}
+        <li id="li_nonInscrit">
+            <a href="{{ path('show_stagiaire' , {'id':nonInscrit.id} )}}">{{nonInscrit}}</a>
+            {% if session.stagiaires|length < session.nombrePlace %} <a id="inscrire_btn"
+                href="{{ path('inscrire_stagiaire', {'id':session.id , 'idStagiaire':nonInscrit.id} )}}">+</a>
+                {% endif %}
+
+        </li>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations{% endblock %}
+
+{% block body %}
+<div id="container">
+    <h1>Liste des formations <a href="{{path('add_formation')}}">+</a></h1>
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">intitulé de la formation</th>
+                <th scope="col">action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for formation in formations %}
+            <tr>
+                <th scope="row">{{formation.id}}</th>
+                <td>{{formation.intituleFormation}}</td>
+                <td>
+                    <div id="btn_container">
+                        <a class="green" href="{{ path ('show_sessions',{id:formation.id})}}">Sessions</a>
+                        <a class="grey" href="#">Edit</a>
+                        <a class="red" href="{{path('delete_formation',{id:formation.id})}}">Supprimer</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {# affichage liste de session pour une formation en cliquant sur le bouton sessions #}
+    {% if formationSessions %}
+    <div id="list_session_formation">
+        <div class="titre">
+            <h4>Sessions </h4>
+            <div class="nombre">{{formationSessions.sessions|length}}</div>
+        </div>
+        {% if formationSessions.sessions|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Formation</th>
+                    <th>Session</th>
+                    {# <th>statut</th> #}
+                    <th>date de debut</th>
+                    <th>date de fin</th>
+                    <th>Nombre place</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in formationSessions.sessions %}
+                <tr>
+                    <th>{{session.formation}}</th>
+                    <td><a href="{{path('show_session',{'id':session.id})}}">{{session.intituleSession}}</a></td>
+                    {# <td>{{session}}</td> #}
+                    <td>{{session.dateDebut|date("m/d/Y")}}</td>
+                    <td>{{session.dateFin|date("m/d/Y")}}</td>
+                    <td>{{session.stagiaires|length}}/{{session.nombrePlace}}</td>
+                    {% endfor %}
+
+                </tr>
+            </tbody>
+        </table>
+        {% else %} Pas de session
+        {% endif %}
+        {% else %}
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

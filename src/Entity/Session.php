@@ -163,7 +163,6 @@ class Session
             $this->programmes->add($programme);
             $programme->setSession($this);
         }
-
         return $this;
     }
 

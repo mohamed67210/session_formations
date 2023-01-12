@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Session;
+use App\Entity\Stagiaire;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -40,6 +41,30 @@ class SessionRepository extends ServiceEntityRepository
         }
     }
 
+    public function findStagiaireNotInscrit($session_id)
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+        $qb = $sub;
+
+        // selectionner tt les stagiaire d'une session avec id session 
+        $qb->select('s')
+            ->from('App\Entity\Stagiaire', 's')
+            ->leftJoin('s.sessions', 'se')
+            ->where('se.id = :id');
+
+        $sub = $em->createQueryBuilder();
+        // selectionner stagiaire non inscrit a la session  (NOT IN)
+        $sub->select('st')
+            ->from('App\Entity\Stagiaire', 'st')
+            ->where($sub->expr()->notIn('st.id', $qb->getDQL()))
+            ->setParameter('id', $session_id)
+            ->orderBy('st.nomStagiaire');
+        // renvoyer resultat 
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
+
     public function findPastSession()
     {
         $now = new DateTime();
@@ -47,7 +72,7 @@ class SessionRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('s')
             ->Where('s.dateFin < :now')
             ->orderBy('s.dateDebut', 'ASC')
-            ->setParameter('now',$now)
+            ->setParameter('now', $now)
             ->getQuery()
             ->getResult();
     }
@@ -58,7 +83,7 @@ class SessionRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('s')
             ->Where('s.dateDebut > :now')
             ->orderBy('s.dateDebut', 'ASC')
-            ->setParameter('now',$now)
+            ->setParameter('now', $now)
             ->getQuery()
             ->getResult();
     }
@@ -70,7 +95,7 @@ class SessionRepository extends ServiceEntityRepository
             ->where('s.dateDebut < :now')
             ->andWhere('s.dateFin > :now')
             ->orderBy('s.dateDebut', 'ASC')
-            ->setParameter('now',$now)
+            ->setParameter('now', $now)
             ->getQuery()
             ->getResult();
     }

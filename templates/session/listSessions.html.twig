@@ -4,6 +4,7 @@
 
 {% block body %}
 <div id="container">
+    <a href="{{path ('add_session')}}">Ajouter nouvelle session</a>
     <div class="listSession">
         <h3>Listes des sessions passées :</h3>
         {% if pastSession|length > 0 %}
@@ -26,25 +27,27 @@
                 <tr>
                     <th scope="row">
                         <a href="{{ path('show_session' , {'id':session.id} ) }}">{{session.intituleSession}}</a>
-                        {% if (session.stagiaires|length) < session.nombrePlace %}<br><label
+                    </th>
+                    <td>
+                        {% if (session.stagiaires|length) < session.nombrePlace %}<label
                                 class="green">Disponible</label>
                             {% else %}
                             <label class="red">Compléte</label>
                             {% endif %}
-                    </th>
-                    <td>
-                        {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
-                            (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
-                            A venir
-                            {% else %} passée {% endif %} </td>
                     <td>{{session.Formation}}</td>
                     <td>{{session.dateDebut|date("m/d/Y")}}</td>
                     <td>{{session.dateFin|date("m/d/Y")}}</td>
                     <td>
                         {{session.stagiaires|length}}/{{session.nombrePlace}}
                     </td>
-                    <td><a href="#">Voir</a></td>
-                    <td><button type="button" class="btn btn-warning">edit</button></td>
+                    <td><a href="{{ path('show_programme' , {'id':session.id} ) }}">Voir</a></td>
+                    <td>
+                        <div id="btn_container">
+                            <a class="grey" href="#">Edit</a>
+                            <a class="red" href="#">Supprimer</a>
+                        </div>
+
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -73,26 +76,27 @@
                 <tr>
                     <th scope="row">
                         <a href="{{ path('show_session' , {'id':session.id} ) }}">{{session.intituleSession}}</a>
-
-                        {% if (session.stagiaires|length) < session.nombrePlace %} <br><label
+                    </th>
+                    <td>
+                        {% if (session.stagiaires|length) < session.nombrePlace %}<label
                                 class="green">Disponible</label>
                             {% else %}
                             <label class="red">Compléte</label>
                             {% endif %}
-                    </th>
-                    <td>
-                        {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
-                            (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
-                            A venir
-                            {% else %} passée {% endif %} </td>
                     <td>{{session.Formation}}</td>
                     <td>{{session.dateDebut|date("m/d/Y")}}</td>
                     <td>{{session.dateFin|date("m/d/Y")}}</td>
                     <td>
                         {{session.stagiaires|length}}/{{session.nombrePlace}}
                     </td>
-                    <td><a href="#">Voir</a></td>
-                    <td><button type="button" class="btn btn-warning">edit</button></td>
+                    <td><a href="{{ path('show_programme' , {'id':session.id} ) }}">Voir</a></td>
+                    <td>
+                        <div id="btn_container">
+                            <a class="grey" href="#">Edit</a>
+                            <a class="red" href="#">Supprimer</a>
+                        </div>
+
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -121,17 +125,13 @@
                 <tr>
                     <th scope="row">
                         <a href="{{ path('show_session' , {'id':session.id} ) }}">{{session.intituleSession}}</a>
-                        {% if (session.stagiaires|length) < session.nombrePlace %} <br><label
+                    </th>
+                    <td>
+                        {% if (session.stagiaires|length) < session.nombrePlace %}<label
                                 class="green">Disponible</label>
                             {% else %}
                             <label class="red">Compléte</label>
                             {% endif %}
-                    </th>
-                    <td>
-                        {% if (session.dateDebut|date("m/d/Y")) < ("now"|date("m /d/Y")) %} En cours {% elseif
-                            (session.dateDebut|date("m/d/Y"))> ("now"|date("m /d/Y")) %}
-                            A venir
-                            {% else %} passée {% endif %} </td>
                     <td>{{session.Formation}}</td>
                     <td>{{session.dateDebut|date("m/d/Y")}}</td>
                     <td>{{session.dateFin|date("m/d/Y")}}</td>
@@ -139,7 +139,13 @@
                         {{session.stagiaires|length}}/{{session.nombrePlace}}
                     </td>
                     <td><a href="{{ path('show_programme' , {'id':session.id} ) }}">Voir</a></td>
-                    <td><button type="button" class="btn btn-warning">edit</button></td>
+                    <td>
+                        <div id="btn_container">
+                            <a class="grey" href="#">Edit</a>
+                            <a class="red" href="#">Supprimer</a>
+                        </div>
+
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

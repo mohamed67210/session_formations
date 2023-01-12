@@ -6,13 +6,15 @@
 
 
 <div id="container">
-<h3>Programme de la session : {{session.intituleSession}}</h3>
+    <h3>Programme de la session : {{session.intituleSession}}</h3>
+    <a href="{{ path('add_programme',{id:session.id})}}">nouveau programme</a>
     <table class="table table-striped ">
         <thead>
             <tr>
                 <th>Module</th>
                 <th>Durée</th>
                 <th>Catégorie</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +24,12 @@
                 <td> {{programme}}</td>
                 <td>{{programme.duree}} jours</td>
                 <td>{{programme.moduleSession.categorieModule}}</td>
+                <td id="btn_container">
+                    <a class="green" href="#">Sessions</a>
+                    <a class="grey" href="#">Edit</a>
+                    <a class="red" href="#">Supprimer</a>
+                </td>
+
             </tr>
             {% endfor %}
         </tbody>

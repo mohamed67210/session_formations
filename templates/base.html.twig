@@ -8,8 +8,9 @@
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
+    {#
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> #}
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     {% endblock %}
 
@@ -22,8 +23,14 @@
         <h1>Centre de Formation<h1>
     </div> #}
     <ul>
+        <li><a href="{{path ('list_formation')}}"> Formations</a></li>
         <li><a href="{{path ('list_session')}}"> Sessions</a></li>
         <li><a href="{{path ('app_stagiaire')}}">Stagiaires</a></li>
+        <li><a href="{{path('list_formateur')}}">Formateurs</a></li>
+        <li><a href="{{path ('app_stagiaire')}}">mon Compte</a></li>
+        <div>
+            <a href="#">Se deconnecté</a>
+        </div>
     </ul>
 </nav>
 

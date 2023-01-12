@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="container">
+    <h3>nouvelle formation</h3>
+    <div id="inputes_container">
+        {{form_start (formAddFormation)}}
+        {{form_row(formAddFormation.intituleFormation)}}
+        {{form_end (formAddFormation)}}
+    </div>
+</div>
+{% endblock body %}

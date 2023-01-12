@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="container">
+    <h3>nouveau programme</h3>
+    <div id="inputes_container">
+        {{form_start (formAddProgramme)}}
+        {{form_row(formAddProgramme.duree)}}
+        {{form_row(formAddProgramme.moduleSession)}}
+        {{form_end (formAddProgramme)}}
+    </div>
+</div>
+{% endblock body %}
