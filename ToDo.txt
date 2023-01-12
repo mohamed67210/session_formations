@@ -1,1 +1,63 @@
-afficher session : intitule de la session + formateur referent + liste des stagiaires + bouton ajouter stagiaire
+1-afficher session : intitule de la session + formateur referent + liste des stagiaires inscrit + liste de stagiaire non inscrit + bouton inscrire stagiaire (fait)
+2-desinscrire stagiare d'une session 
+
+partie Formation : 
+    ajout formation (fait)
+    afficher liste formation (fait)
+    supprimer formation (fait)
+    afficher liste session d'une formation (fait)
+    edit formation
+
+partie session : 
+    pour session passée : 
+        -(detail session)on peut pas inscrire ni desinscrire des stagiaire et on affiche juste liste de stagiaire inscrit(fait)
+        - (list session) statut indiquer que la session est passée 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+requete dql pour inscrire stagiaire existant mais pas inscrit a une session
+sql :SELECT * FROM `stagiaire` 
+LEFT JOIN session_stagiaire 
+on stagiaire.id = session_stagiaire.stagiaire_id
+where stagiaire.id NOT IN( SELECT stagiaire_id FROM session_stagiaire WHERE session_stagiaire.session_id = 1)
+
+SELECT nom_stagiaire FROM `Session` 
+LEFT JOIN session_stagiaire 
+ON session.id = session_stagiaire.session_id
+RIGHT JOIN stagiaire 
+ON session_stagiaire.stagiaire_id = stagiaire.id
+where stagiaire.id NOT IN( SELECT stagiaire_id FROM session_stagiaire WHERE session_stagiaire.session_id = 1)
