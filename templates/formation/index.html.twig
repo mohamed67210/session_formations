@@ -20,9 +20,9 @@
                 <td>{{formation.intituleFormation}}</td>
                 <td>
                     <div id="btn_container">
-                        <a class="green" href="{{ path ('show_sessions',{id:formation.id})}}">Sessions</a>
-                        <a class="grey" href="#">Edit</a>
-                        <a class="red" href="{{path('delete_formation',{id:formation.id})}}">Supprimer</a>
+                        <a class="green" href="{{ path ('show_sessions',{'id':formation.id})}}">Sessions</a>
+                        <a class="grey" href="{{path ('edit_formation',{'id':formation.id})}}">Edit</a>
+                        <a class="red" href="{{path('delete_formation',{'id':formation.id})}}">Supprimer</a>
                     </div>
                 </td>
             </tr>
@@ -51,7 +51,7 @@
             <tbody>
                 {% for session in formationSessions.sessions %}
                 <tr>
-                    <th>{{session.formation}}</th>
+                    <td>{{session.formation}}</td>
                     <td><a href="{{path('show_session',{'id':session.id})}}">{{session.intituleSession}}</a></td>
                     {# <td>{{session}}</td> #}
                     <td>{{session.dateDebut|date("m/d/Y")}}</td>

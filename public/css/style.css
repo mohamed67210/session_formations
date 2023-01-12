@@ -3,6 +3,17 @@
     margin: 0;
 }
 
+a {
+    color: #195073;
+    font-style: italic;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #6F91A6;
+}
+
 nav {
     background-color: #77C3F2;
     display: flex;
@@ -66,7 +77,8 @@ body {
     width: 90%;
 }
 
-h3,h4 {
+h3,
+h4 {
     color: #262626;
 }
 
@@ -157,7 +169,7 @@ td {
 
 /* formtytype Addstagiaire  */
 /* le div qui contient les formulaire et autres en option */
-.option{
+.option {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -165,6 +177,7 @@ td {
     /* background-color: #594D48; */
     width: 100%;
 }
+
 /* les input */
 #inputes_container {
     padding: 1rem;

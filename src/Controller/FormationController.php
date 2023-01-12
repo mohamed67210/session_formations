@@ -14,13 +14,16 @@ class FormationController extends AbstractController
 {
 
     // ajouter nouvelle formation
+
     #[Route('/formation/add', name: 'add_formation')]
+    #[Route('/formation/{id}/edit', name: 'edit_formation')]
+
     public function add(ManagerRegistry $doctrine, Formation $formation = null, Request $request): Response
     {
         // si le formation n'existe pas on instancie un nouveau  
-        // if (!$formation) {
-        //     $formation = new Formation();
-        // }
+        if (!$formation) {
+            $formation = new Formation();
+        }
         // construire un formulaire qui va se baser sur le $builder dans formationType
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);

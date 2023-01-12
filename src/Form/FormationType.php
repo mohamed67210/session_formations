@@ -15,7 +15,7 @@ class FormationType extends AbstractType
     {
         $builder
             ->add('intituleFormation', TextType::class, ['label' => 'intitulé de la formation'])
-            ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-success']]);
+            ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-success'], 'label' => 'Enregistrer']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

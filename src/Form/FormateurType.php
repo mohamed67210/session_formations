@@ -19,7 +19,7 @@ class FormateurType extends AbstractType
             ->add('prenomFormateur', TextType::class, ['attr' => ['class' => 'input']])
             ->add('mailFormateur', TextType::class, ['attr' => ['class' => 'input']])
             ->add('telephoneFormateur', NumberType::class, ['attr' => ['class' => 'input']])
-            ->add('submit', SubmitType::class, ['attr' => ['label' => 'Enregistrer']]);
+            ->add('submit', SubmitType::class, ['label' => 'Enregistrer']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
