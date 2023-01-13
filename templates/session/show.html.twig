@@ -5,13 +5,40 @@
 {% block body %}
 <div id="container">
     <h3>information sur la session : {{session.intituleSession}}</h3>
-    <div class="detail_container">
+    <div class="option">
+        <div class="detail_container session">
+            <label>Intitulé :{{session.intituleSession}}</label>
+            <label>Date de debut :{{session.dateDebut |date("m/d/Y")}}</label>
+            <label>Date de fin :{{session.dateFin |date("m/d/Y")}}</label>
+            <label>Formateur : {{session.formateur}}</label>
+            <label>nombre de place reservé : {{session.stagiaires|length}}/{{session.nombrePlace}}</label>
+        </div>
+        <div class="detail_container">
+            <div class="titre">
+                <h4>{{session.intituleSession}} Programmes </h4>
+                <div class="nombre">{{session.programmes|length}}</div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                        <th>Durée</th>
+                        <th>Categorie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for programme in session.programmes %}
+                    <tr>
+                        <td>{{ programme.moduleSession }}</td>
+                        <td>{{ programme.duree }}</td>
+                        <td>{{ programme.moduleSession.getCategorieModule() }}</td>
 
-        <label>Intitulé :{{session.intituleSession}}</label>
-        <label>Date de debut :{{session.dateDebut |date("m/d/Y")}}</label>
-        <label>Date de fin :{{session.dateFin |date("m/d/Y")}}</label>
-        <label>Formateur : {{session.formateur}}</label>
-        <label>nombre de place reservé : {{session.stagiaires|length}}/{{session.nombrePlace}}</label>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="option">
         <div class="option_stagiaires">
