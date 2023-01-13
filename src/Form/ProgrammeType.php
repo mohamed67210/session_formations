@@ -19,7 +19,7 @@ class ProgrammeType extends AbstractType
         $builder
             ->add('duree',NumberType::class,['label'=>'Durée : '])
             ->add('moduleSession', EntityType::class, ['class' => ModuleSession::class, 'choice_label' => 'intituleModule', 'attr' => ['class' => 'form-control']])
-            ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-success']]);
+            ->add('submit', SubmitType::class, ['label'=>'programmer','attr' => ['class' => 'green']]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

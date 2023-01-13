@@ -18,10 +18,10 @@ class ProgrammeController extends AbstractController
 {
     // ajouter programme a une session 
     #[Route('/programme/add/{id}', name: 'add_programme')]
-    #[ParamConverter('session', options:["mapping" => ["id" => "id"]])]
+    #[ParamConverter('session', options: ["mapping" => ["id" => "id"]])]
     public function add(Session $session, ManagerRegistry $doctrine, Programme $programme = null, Request $request): response
     {
-        
+
         $programme = new Programme();
         // construire un formulaire qui va se baser sur le $builder dans ProgrammeType
         $form = $this->createForm(ProgrammeType::class, $programme);
@@ -53,6 +53,8 @@ class ProgrammeController extends AbstractController
             'formAddProgramme' => $form->createView()
         ]);
     }
+
+
     // afficher programme d'une session
     #[Route('/programme/{id}', name: 'show_programme')]
     public function index(int $id, ProgrammeRepository $programmeRepository, SessionRepository $sessionRepository): Response

@@ -172,7 +172,7 @@ td {
 .option {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: #6f91a6ad;
     width: 100%;
@@ -227,7 +227,7 @@ td {
     flex-direction: column;
     padding: 1rem;
     border-radius: 5px;
-    width: 40%;
+    min-width: 40%;
     box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
     -webkit-box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
     -moz-box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);

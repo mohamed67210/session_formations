@@ -12,6 +12,14 @@
         <label>Formateur : {{session.formateur}}</label>
         <label>nombre de place reservé : {{session.stagiaires|length}}/{{session.nombrePlace}}</label>
     </div>
+    <div class="detail_container">
+        {{form_start(AddProgramme)}}
+        {{form_row(AddProgramme.moduleSession)}}
+        {{form_row(AddProgramme.duree)}}
+        {{form_end(AddProgramme)}}
+    </div>
+
+
     <div class="option">
         {# liste de programmes de la session #}
         <div class="detail_container">
@@ -41,7 +49,7 @@
                 </tbody>
             </table>
         </div>
-        {# liste des programmes non qui sont pas dans la session#}
+        {# liste des programmes qui ne sont pas dans la session#}
         <div class="detail_container">
             <div class="titre">
                 <h4>Ajouter Programmes </h4>
@@ -60,9 +68,9 @@
                     {% for module in ModulesNonProgrammer %}
                     <tr>
                         <td>{{ module.intituleModule }}</td>
-                        <td></td>
+                        <td><input type="number" name="duree"></td>
                         <td>{{ module.categorieModule }}</td>
-                        <td><a class="green" href="">Programmer</a></td>
+                        <td><a href="" class="green">Programmer</a></td>
                     </tr>
                     {% endfor %}
 
