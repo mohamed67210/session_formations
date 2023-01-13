@@ -42,7 +42,6 @@ class FormateurController extends AbstractController
             return $this->redirectToRoute('list_formateur');
         }
         //pour afficher sessions d'un formateur
-        $formateurId = $formateur->getId();
         $oneFormateur = $doctrine->getRepository(Formateur::class)->findOneBy(['id' => $id]);
         return $this->render('formateur/index.html.twig', [
             'formAddFormateur' => $form->createView(),

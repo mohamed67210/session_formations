@@ -12,28 +12,37 @@
         <label>Date de fin :{{session.dateFin |date("m/d/Y")}}</label>
         <label>Formateur : {{session.formateur}}</label>
         <label>nombre de place reservé : {{session.stagiaires|length}}/{{session.nombrePlace}}</label>
-
-        <br>Liste de stagiaires inscrit:
-        {% for stagiaire in session.stagiaires %}
-        <li id="li_nonInscrit">
-            <a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire}}</a>
-            {% if session.dateFin |date("m/d/Y") > 'now'|date("m/d/Y") %}
-            <a id="inscrire_btn"
-                href="{{ path('desinscrire_stagiaire', {'id':session.id , 'idStagiaire':stagiaire.id} )}}">-</a>
-            {% endif %}
-
-        </li>
-        {% endfor %}
-        <br>Liste de stagiaires non inscrit :
-        {% for nonInscrit in stagiairesNonInscrit %}
-        <li id="li_nonInscrit">
-            <a href="{{ path('show_stagiaire' , {'id':nonInscrit.id} )}}">{{nonInscrit}}</a>
-            {% if session.stagiaires|length < session.nombrePlace %} <a id="inscrire_btn"
-                href="{{ path('inscrire_stagiaire', {'id':session.id , 'idStagiaire':nonInscrit.id} )}}">+</a>
+    </div>
+    <div class="option">
+        <div class="option_stagiaires">
+            <div class="titre">
+                <h4>Stagiaires non inscrit </h4>
+                <div class="nombre">{{session.stagiaires|length}}</div>
+            </div>
+            {% for stagiaire in session.stagiaires %}
+            <div class="stagiaire_container">
+                <a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire}}</a>
+                {% if session.dateFin |date("m/d/Y") > 'now'|date("m/d/Y") %}
+                <a class="inscrire_btn"
+                    href="{{ path('desinscrire_stagiaire', {'id':session.id , 'idStagiaire':stagiaire.id} )}}">-</a>
                 {% endif %}
-
-        </li>
-        {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="option_stagiaires">
+            <div class="titre">
+                <h4>Stagiaires non inscrit </h4>
+                <div class="nombre">{{stagiairesNonInscrit|length}}</div>
+            </div>
+            {% for nonInscrit in stagiairesNonInscrit %}
+            <div class="stagiaire_container">
+                <a href="{{ path('show_stagiaire' , {'id':nonInscrit.id} )}}">{{nonInscrit}}</a>
+                {% if session.stagiaires|length < session.nombrePlace %} <a class="inscrire_btn"
+                    href="{{ path('inscrire_stagiaire', {'id':session.id , 'idStagiaire':nonInscrit.id} )}}">+</a>
+                    {% endif %}
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 

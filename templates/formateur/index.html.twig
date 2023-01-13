@@ -37,13 +37,13 @@
             {{form_start(formAddFormateur)}}
             {{form_end(formAddFormateur)}}
         </div>
-
+        {# pour afficher lesite de sessions d'un formateur #}
         {% if oneFormateur %}
         <div class="detail_container">
 
             <div class="titre">
-                <h4>Sessions </h4>
-                {# <div class="nombre">{{formateur.sessions|length}}</div> #}
+                <h4>{{oneFormateur}} Sessions </h4>
+                <div class="nombre">{{oneFormateur.sessions|length}}</div>
             </div>
             <table>
                 <thead>
@@ -57,9 +57,7 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     {% for session in oneFormateur.sessions %}
-
                     <tr>
                         <th>{{session.formation}}</th>
                         <td><a href="">{{session.intituleSession}}</a></td>

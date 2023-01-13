@@ -177,11 +177,20 @@ td {
     /* background-color: #594D48; */
     width: 100%;
 }
+.option .option_stagiaires{
+    background-color: #6F91A6;
+    width: 40%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 5px;
+}
 
 /* les input */
 #inputes_container {
     padding: 1rem;
-    background-color: #77c3f273;
+    background-color: #6F91A6;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -207,8 +216,8 @@ td {
 
 /* pour page detail stagiaire et session */
 .detail_container {
-    margin-top: 2rem;
-    background-color: #77c3f27e;
+    /* margin-top: 2rem; */
+    background-color: #6F91A6;
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -217,15 +226,15 @@ td {
 }
 
 /* detail session */
-/* liste stagiaire non inscrit */
-#li_nonInscrit {
+/* liste stagiaire non inscrit et inscrit */
+div .stagiaire_container {
     position: relative;
     padding: 0.2rem;
     border-radius: 3px;
-    width: 20%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
     background-color: white;
@@ -244,6 +253,7 @@ a {
 .titre {
     display: flex;
     flex-direction: row;
+    gap: 0.3rem;
 }
 
 .nombre {
