@@ -12,6 +12,7 @@ partie session :
     pour session passée : 
         -(detail session)on peut pas inscrire ni desinscrire des stagiaire et on affiche juste liste de stagiaire inscrit(fait)
         - (list session) statut indiquer que la session est passée 
+    pour detail session : afficher programme
 
 
 
