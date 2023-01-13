@@ -69,10 +69,12 @@ class SessionController extends AbstractController
     public function show(Session $session, SessionRepository $sr): Response
     {
         $session_id = $session->getId();
+        $nonProgrammer = $sr->findModules($session_id);
         $nonInscrit = $sr->findStagiaireNotInscrit($session_id);
         return $this->render('session/show.html.twig', [
             'session' => $session,
-            'stagiairesNonInscrit' => $nonInscrit
+            'stagiairesNonInscrit' => $nonInscrit,
+            'ModulesNonProgrammer' => $nonProgrammer,
         ]);
     }
     // pour afficher liste de sessions separer(en cours,a venir,passée)

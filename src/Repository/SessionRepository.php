@@ -40,7 +40,7 @@ class SessionRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    // pour afficher les stagiaire qui ne sont pas inscrit a une session
     public function findStagiaireNotInscrit($session_id)
     {
         $em = $this->getEntityManager();
@@ -60,6 +60,31 @@ class SessionRepository extends ServiceEntityRepository
             ->where($sub->expr()->notIn('st.id', $qb->getDQL()))
             ->setParameter('id', $session_id)
             ->orderBy('st.nomStagiaire');
+        // renvoyer resultat 
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
+
+    public function findModules($session_id)
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+        $qb = $sub;
+
+        // selectionner tt les Module programmer d'une session avec id session 
+        $qb->select('m')
+            ->from('App\Entity\ModuleSession', 'm')
+            ->leftJoin('m.programmes', 'p')
+            ->innerJoin('p.session','session')
+            ->where('session = :id');
+
+        $sub = $em->createQueryBuilder();
+        // selectionner stagiaire non inscrit a la session  (NOT IN)
+        $sub->select('mt')
+            ->from('App\Entity\ModuleSession', 'mt')
+            ->where($sub->expr()->notIn('mt.id', $qb->getDQL()))
+            ->setParameter('id', $session_id);
+        // ->orderBy('mt.nomStagiaire');
         // renvoyer resultat 
         $query = $sub->getQuery();
         return $query->getResult();

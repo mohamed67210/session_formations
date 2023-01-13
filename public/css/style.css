@@ -177,6 +177,7 @@ td {
     background-color: #6f91a6ad;
     width: 100%;
     padding: 1rem;
+    gap: 1rem;
 }
 .option .option_stagiaires{
     background-color: #6F91A6;
@@ -226,7 +227,7 @@ td {
     flex-direction: column;
     padding: 1rem;
     border-radius: 5px;
-    width: 50%;
+    width: 40%;
     box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
     -webkit-box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
     -moz-box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
@@ -261,11 +262,21 @@ a {
 }
 
 .titre {
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 0.3rem;
 }
-
+.plus_btn{
+    font-size: xx-large;
+    position: absolute;
+    right: 1rem;
+    bottom: 0;
+}
+.plus_btn:hover{
+    color: green;
+    transform: scale(1.5)
+}
 .nombre {
     background-color: #594D48;
     color: white;
