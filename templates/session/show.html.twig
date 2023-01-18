@@ -44,7 +44,8 @@
                         <td>{{ programme.moduleSession }}</td>
                         <td>{{ programme.duree }}</td>
                         <td>{{ programme.moduleSession.getCategorieModule() }}</td>
-                        <td><a href="{{path('deprogrammer_module',{'id':session.id,'idProgramme':programme.id})}}" class="red">Deprogrammer</a></td>
+                        <td><a href="{{path('deprogrammer_module',{'id':session.id,'idProgramme':programme.id})}}"
+                                class="red">Deprogrammer</a></td>
 
                     </tr>
                     {% endfor %}
@@ -70,11 +71,11 @@
                 <tbody>
                     {% for module in ModulesNonProgrammer %}
                     <tr>
-                        <form action="liste.php" method="get">
-                            <td><input value="{{ module.intituleModule }}" name="module"/></td>
+                        <form action="{{path('programmer_module',{'id':session.id})}}" method="POST">
+                            <td><input value="{{ module.intituleModule }}" name="module" /></td>
                             <td><input type="number" name="duree"></td>
-                            <td><input value="{{ module.categorieModule }}" name="categorie"/></td>
-                            <td><button type="submit" class="green">Programmer</button></td>
+                            <td><input value="{{ module.categorieModule }}" name="categorie" /></td>
+                            <td><button type="submit" name="submit" class="green">Programmer</button></td>
                         </form>
                     </tr>
                     {% endfor %}

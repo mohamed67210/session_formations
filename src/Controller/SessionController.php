@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ModuleSession;
 use App\Entity\Programme;
 use App\Entity\Session;
 use App\Entity\Stagiaire;
@@ -9,6 +10,7 @@ use App\Form\SessionType;
 use App\Form\ProgrammeType;
 use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,15 +18,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
-     // supprimer session
-     #[Route('/session/{id}/delete', name: 'delete_session')]
-     public function remove(ManagerRegistry $doctrine, Session $session): Response
-     {
-         $entityManager = $doctrine->getManager();
-         $session =  $entityManager->getRepository(Session::class)->remove($session);
-         $entityManager->flush();
-         return $this->redirectToRoute('list_session');
-     }
+    // supprimer session
+    #[Route('/session/{id}/delete', name: 'delete_session')]
+    public function remove(ManagerRegistry $doctrine, Session $session): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $session =  $entityManager->getRepository(Session::class)->remove($session);
+        $entityManager->flush();
+        return $this->redirectToRoute('list_session');
+    }
+    //  programmer un module
+    #[Route('/session/programmer/{id}', name: 'programmer_module')]
+    // #[ParamConverter("session", options: ["mapping" => ["idSession" => "id"]])]
+    public function programmer(ManagerRegistry $doctrine, Programme $programme, Session $session, ModuleSession $module, Request $request)
+    {
+        // chercher la session 
+        $entityManager = $doctrine->getManager();
+        $moduleName = $request->request->get('module');
+        // chercher objet module 
+        $module = $entityManager->getRepository(ModuleSession::class)->findOneBy(['intituleModule' => $moduleName]);
+        $duree = $request->request->get('duree');
+        $programme = new Programme();
+        $programme->setSession($session);
+        $programme->setModuleSession($module);
+        $programme->setDuree($duree);
+        $entityManager->persist($programme);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
     // deprogrammer un module
     #[Route('/session/{id}/deprogrammer/{idProgramme}', name: 'deprogrammer_module')]
     public function deprogrammer(int $idProgramme, ManagerRegistry $doctrine, Programme $programme, Session $session): Response
@@ -138,5 +160,4 @@ class SessionController extends AbstractController
             'progressSession' => $progressSessions
         ]);
     }
-
 }
