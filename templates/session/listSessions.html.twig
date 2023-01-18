@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th scope="col">Session</th>
-                    <th scope="col">Statut</th>
+                    {# <th scope="col">Statut</th> #}
                     <th scope="col">Formation</th>
                     <th scope="col">Date de debut</th>
                     <th scope="col">Date de fin</th>
@@ -28,12 +28,12 @@
                     <th scope="row">
                         <a href="{{ path('show_session' , {'id':session.id} ) }}">{{session.intituleSession}}</a>
                     </th>
-                    <td>
+                    {# <td>
                         {% if (session.stagiaires|length) < session.nombrePlace %}<label class="green"></label>
                             Disponible</label>
                             {% else %}
                             <label class="red">Compléte</label>
-                            {% endif %}
+                            {% endif %}</td> #}
                     <td>{{session.Formation}}</td>
                     <td>{{session.dateDebut|date("m/d/Y")}}</td>
                     <td>{{session.dateFin|date("m/d/Y")}}</td>
@@ -43,7 +43,7 @@
                     <td><a href="{{ path('show_programme' , {'id':session.id} ) }}">Voir</a></td>
                     <td>
                         <div id="btn_container">
-                            <a class="grey" href="#">Edit</a>
+                            {# <a class="grey" href="{{path('edit_session',{'id':session.id})}}">Edit</a> #}
                             <a class="red" href="{{path('delete_session',{'id':session.id})}}">Supprimer</a>
                         </div>
 
@@ -92,7 +92,7 @@
                     <td><a href="{{ path('show_programme' , {'id':session.id} ) }}">Voir</a></td>
                     <td>
                         <div id="btn_container">
-                            <a class="grey" href="#">Edit</a>
+                            <a class="grey" href="{{path('edit_session',{'id':session.id})}}">Edit</a>
                             <a class="red" href="{{path('delete_session',{'id':session.id})}}">Supprimer</a>
                         </div>
 
@@ -141,7 +141,7 @@
                     <td><a href="{{ path('show_programme' , {'id':session.id} ) }}">Voir</a></td>
                     <td>
                         <div id="btn_container">
-                            <a class="grey" href="#">Edit</a>
+                            <a class="grey" href="{{path('edit_session',{'id':session.id})}}">Edit</a>
                             <a class="red" href="{{path('delete_session',{'id':session.id})}}">Supprimer</a>
                         </div>
 

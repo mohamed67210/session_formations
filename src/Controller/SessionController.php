@@ -86,10 +86,14 @@ class SessionController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
     }
-    //ajouter une session
+    //ajouter une session ou editer
+    #[Route('/session/edit/{id}', name: 'edit_session')]
     #[Route('/session/add', name: 'add_session')]
     public function add(ManagerRegistry $doctrine, Session $session = null, Request $request): Response
     {
+        if (!$session) {
+            $session = new Session;
+        }
         // construire un formulaire qui va se baser sur le $builder dans SessionType
         $form = $this->createForm(SessionType::class, $session);
         $form->handleRequest($request);
