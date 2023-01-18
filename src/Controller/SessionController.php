@@ -2,19 +2,21 @@
 
 namespace App\Controller;
 
-use App\Entity\ModuleSession;
-use App\Entity\Programme;
 use App\Entity\Session;
+use App\Entity\Programme;
 use App\Entity\Stagiaire;
 use App\Form\SessionType;
 use App\Form\ProgrammeType;
+use App\Entity\ModuleSession;
 use App\Repository\SessionRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class SessionController extends AbstractController
 {
@@ -28,24 +30,31 @@ class SessionController extends AbstractController
         return $this->redirectToRoute('list_session');
     }
     //  programmer un module
-    #[Route('/session/programmer/{id}', name: 'programmer_module')]
-    // #[ParamConverter("session", options: ["mapping" => ["idSession" => "id"]])]
-    public function programmer(ManagerRegistry $doctrine, Programme $programme, Session $session, ModuleSession $module, Request $request)
+    #[Route('/session/{id}/programmer/{idModule}', name: 'programmer_module')]
+    public function programmer($idModule, ManagerRegistry $doctrine, ValidatorInterface $validator, Programme $programme, Session $session, ModuleSession $module, Request $request)
     {
-        // chercher la session 
-        $entityManager = $doctrine->getManager();
-        $moduleName = $request->request->get('module');
-        // chercher objet module 
-        $module = $entityManager->getRepository(ModuleSession::class)->findOneBy(['intituleModule' => $moduleName]);
-        $duree = $request->request->get('duree');
-        $programme = new Programme();
-        $programme->setSession($session);
-        $programme->setModuleSession($module);
-        $programme->setDuree($duree);
-        $entityManager->persist($programme);
-        $entityManager->flush();
+        $submit = $request->request->get('submit');
 
-        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+        if ($request->request->get('submit')) {
+            $entityManager = $doctrine->getManager();
+            // recupere la variable module du formulaire
+            $moduleName = $request->request->get('module');
+            // chercher objet module 
+            $module = $entityManager->getRepository(ModuleSession::class)->findOneBy(['id' => $idModule]);
+            // recuperer duree
+            $duree = $request->request->get('duree');
+            // nouveau programme
+            $programme = new Programme();
+            $programme->setSession($session);
+            $programme->setModuleSession($module);
+            $programme->setDuree($duree);
+            $entityManager->persist($programme);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+        } else {
+            return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+        }
     }
     // deprogrammer un module
     #[Route('/session/{id}/deprogrammer/{idProgramme}', name: 'deprogrammer_module')]

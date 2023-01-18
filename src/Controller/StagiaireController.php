@@ -23,6 +23,31 @@ class StagiaireController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute('app_stagiaire');
     }
+    // editer stagiaire 
+    #[Route('/stagiaire/edit/{id}', name: 'edit_stagiaire')]
+    public function edit(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, Request $request)
+    {
+        // $stagiaire = new Stagiaire;
+        $form = $this->createForm(StagiaireType::class, $stagiaire);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // recuperer les données de stagiaire si il existe deja et si il est nul
+            $stagiaire = $form->getData();
+            // on recupere le managere doctrine
+            $entityManager = $doctrine->getManager();
+            // persist remplace prepare en pdo , on prepare l'objet stagiaire
+            $entityManager->persist($stagiaire);
+            //on execute 
+            $entityManager->flush();
+            // on  retourne vers la page affichage de tous les employés
+            return $this->redirectToRoute('app_stagiaire');
+        }
+        return $this->render('stagiaire/add.html.twig', [
+            'formAddStagiaire' => $form->createView(),
+        ]);
+    }
+
     //ajouter stagiaire
     #[Route('/stagiaire/add', name: 'add_stagiaire')]
     public function add(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, Request $request)

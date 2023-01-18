@@ -12,13 +12,6 @@
         <label>Formateur : {{session.formateur}}</label>
         <label>nombre de place reservé : {{session.stagiaires|length}}/{{session.nombrePlace}}</label>
     </div>
-    <div class="detail_container">
-        {{form_start(AddProgramme)}}
-        {{form_row(AddProgramme.moduleSession)}}
-        {{form_row(AddProgramme.duree)}}
-        {{form_end(AddProgramme)}}
-    </div>
-
 
     <div class="option">
         {# liste de programmes de la session #}
@@ -26,7 +19,6 @@
             <div class="titre">
                 <h4>{{session.intituleSession}} Programmes </h4>
                 <div class="nombre">{{session.programmes|length}}</div>
-                <a class="plus_btn" href="">+</a>
             </div>
             <table>
                 <thead>
@@ -71,11 +63,13 @@
                 <tbody>
                     {% for module in ModulesNonProgrammer %}
                     <tr>
-                        <form action="{{path('programmer_module',{'id':session.id})}}" method="POST">
-                            <td><input value="{{ module.intituleModule }}" name="module" /></td>
+                        <form action="{{path('programmer_module',{'id':session.id, 'idModule':module.id})}}"
+                            method="POST">
+                            <td>{{ module.intituleModule }}</td>
                             <td><input type="number" name="duree"></td>
-                            <td><input value="{{ module.categorieModule }}" name="categorie" /></td>
-                            <td><button type="submit" name="submit" class="green">Programmer</button></td>
+                            <td>{{ module.categorieModule }}</td>
+                            <td><button type="submit" name="submit" value="submit" class="green">Programmer</button>
+                            </td>
                         </form>
                     </tr>
                     {% endfor %}
