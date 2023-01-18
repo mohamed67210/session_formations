@@ -79,7 +79,7 @@ class SessionRepository extends ServiceEntityRepository
             ->where('session = :id');
 
         $sub = $em->createQueryBuilder();
-        // selectionner stagiaire non inscrit a la session  (NOT IN)
+        // selectionner non prgrammer a la session  (NOT IN)
         $sub->select('mt')
             ->from('App\Entity\ModuleSession', 'mt')
             ->where($sub->expr()->notIn('mt.id', $qb->getDQL()))

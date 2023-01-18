@@ -29,8 +29,8 @@
                         <a href="{{ path('show_session' , {'id':session.id} ) }}">{{session.intituleSession}}</a>
                     </th>
                     <td>
-                        {% if (session.stagiaires|length) < session.nombrePlace %}<label
-                                class="green">Disponible</label>
+                        {% if (session.stagiaires|length) < session.nombrePlace %}<label class="green"></label>
+                            Disponible</label>
                             {% else %}
                             <label class="red">Compléte</label>
                             {% endif %}
@@ -44,7 +44,7 @@
                     <td>
                         <div id="btn_container">
                             <a class="grey" href="#">Edit</a>
-                            <a class="red" href="#">Supprimer</a>
+                            <a class="red" href="{{path('delete_session',{'id':session.id})}}">Supprimer</a>
                         </div>
 
                     </td>
@@ -78,8 +78,8 @@
                         <a href="{{ path('show_session' , {'id':session.id} ) }}">{{session.intituleSession}}</a>
                     </th>
                     <td>
-                        {% if (session.stagiaires|length) < session.nombrePlace %}<label
-                                class="green">Disponible</label>
+                        {% if (session.stagiaires|length) < session.nombrePlace %}<label class="green">
+                            Disponible</label>
                             {% else %}
                             <label class="red">Compléte</label>
                             {% endif %}
@@ -93,7 +93,7 @@
                     <td>
                         <div id="btn_container">
                             <a class="grey" href="#">Edit</a>
-                            <a class="red" href="#">Supprimer</a>
+                            <a class="red" href="{{path('delete_session',{'id':session.id})}}">Supprimer</a>
                         </div>
 
                     </td>
@@ -127,8 +127,8 @@
                         <a href="{{ path('show_session' , {'id':session.id} ) }}">{{session.intituleSession}}</a>
                     </th>
                     <td>
-                        {% if (session.stagiaires|length) < session.nombrePlace %}<label
-                                class="green">Disponible</label>
+                        {% if (session.stagiaires|length) < session.nombrePlace %}<label class="green">
+                            Disponible</label>
                             {% else %}
                             <label class="red">Compléte</label>
                             {% endif %}
@@ -142,7 +142,7 @@
                     <td>
                         <div id="btn_container">
                             <a class="grey" href="#">Edit</a>
-                            <a class="red" href="#">Supprimer</a>
+                            <a class="red" href="{{path('delete_session',{'id':session.id})}}">Supprimer</a>
                         </div>
 
                     </td>

@@ -16,6 +16,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
+     // supprimer session
+     #[Route('/session/{id}/delete', name: 'delete_session')]
+     public function remove(ManagerRegistry $doctrine, Session $session): Response
+     {
+         $entityManager = $doctrine->getManager();
+         $session =  $entityManager->getRepository(Session::class)->remove($session);
+         $entityManager->flush();
+         return $this->redirectToRoute('list_session');
+     }
+    // deprogrammer un module
+    #[Route('/session/{id}/deprogrammer/{idProgramme}', name: 'deprogrammer_module')]
+    public function deprogrammer(int $idProgramme, ManagerRegistry $doctrine, Programme $programme, Session $session): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $programme = $entityManager->getRepository(Programme::class)->find($idProgramme);
+        $session->removeProgramme($programme);
+        $entityManager->flush();
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
     // inscrire un stagiaire
     #[Route('/session/{id}/inscrire/{idStagiaire}', name: 'inscrire_stagiaire')]
     public function inscrire(int $idStagiaire, ManagerRegistry $doctrine, Stagiaire $stagiaire, Session $session): Response
@@ -65,7 +84,6 @@ class SessionController extends AbstractController
         ]);
     }
 
-
     // afficher detail d'un session 
     #[Route('/session/{id}', name: 'show_session')]
     public function show(ManagerRegistry $doctrine, Session $session, Programme $programme, SessionRepository $sr, Request $request): Response
@@ -95,6 +113,7 @@ class SessionController extends AbstractController
             // execute,inserer les données dans la bdd
             $entityManager->flush();
 
+
             // retourner a la page qui affiche toutes les entreprises
 
             return $this->redirectToRoute('list_session');
@@ -119,4 +138,5 @@ class SessionController extends AbstractController
             'progressSession' => $progressSessions
         ]);
     }
+
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Session;
 use App\Entity\Stagiaire;
 use App\Form\StagiaireType;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +14,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StagiaireController extends AbstractController
 {
-    //inscrire stagiaire a une session
+    // supprimer stagiaire
+    #[Route('/stagiaire/{id}/delete', name: 'delete_stagiaire')]
+    public function remove(ManagerRegistry $doctrine, Stagiaire $stagiaire): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $stagiaire = $entityManager->getRepository(Stagiaire::class)->remove($stagiaire);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_stagiaire');
+    }
     //ajouter stagiaire
     #[Route('/stagiaire/add', name: 'add_stagiaire')]
     public function add(ManagerRegistry $doctrine, Stagiaire $stagiaire = null, Request $request)
@@ -25,7 +34,7 @@ class StagiaireController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // recuperer les données de stagiaire si il existe deja et si il est nul
             $stagiaire = $form->getData();
-           
+
             // on recupere le managere doctrine
             $entityManager = $doctrine->getManager();
 
