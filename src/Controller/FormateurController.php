@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Formateur;
+use App\Entity\Session;
 use App\Entity\Stagiaire;
 use App\Form\FormateurType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -25,9 +26,12 @@ class FormateurController extends AbstractController
 
     // supprimer formateur
     #[Route('/formateur/delete/{id}', name: 'delete_formateur')]
-    public function remove(ManagerRegistry $doctrine, Formateur $formateur): Response
+    public function remove(ManagerRegistry $doctrine, Formateur $formateur, Session $session): Response
     {
+        $formateurId = $formateur->getId();
         $entityManager = $doctrine->getManager();
+        $sessions = $entityManager->getRepository(Session::class)->findAll($formateurId);
+        $session->setFormateur(Null);
         $formateur = $entityManager->getRepository(Formateur::class)->remove($formateur);
         $entityManager->flush();
         return $this->redirectToRoute('list_formateur');
