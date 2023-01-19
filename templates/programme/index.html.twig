@@ -7,7 +7,7 @@
 
 <div id="container">
     <h3>Programme de la session : {{session.intituleSession}}</h3>
-    <a href="{{ path('add_programme',{id:session.id})}}">nouveau programme</a>
+    <a href="{{ path('show_session',{id:session.id})}}">nouveau programme</a>
     <table class="table table-striped ">
         <thead>
             <tr>
@@ -24,10 +24,11 @@
                 <td> {{programme}}</td>
                 <td>{{programme.duree}} jours</td>
                 <td>{{programme.moduleSession.categorieModule}}</td>
-                <td id="btn_container">
-                    <a class="green" href="#">Sessions</a>
-                    <a class="grey" href="#">Edit</a>
-                    <a class="red" href="#">Supprimer</a>
+                <td>
+                    <div id="btn_container">
+                        <a class="grey" href="#">Edit</a>
+                        <a class="red" href="#">Supprimer</a>
+                    </div>
                 </td>
 
             </tr>

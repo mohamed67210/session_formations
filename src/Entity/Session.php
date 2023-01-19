@@ -33,13 +33,13 @@ class Session
     private ?Formation $formation = null;
 
     #[ORM\ManyToOne(inversedBy: 'sessions')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Formateur $formateur = null;
 
     #[ORM\ManyToMany(targetEntity: Stagiaire::class, inversedBy: 'sessions')]
     private Collection $stagiaires;
 
-    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class)]
+    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Programme::class, orphanRemoval: true)]
     private Collection $programmes;
 
     public function __construct()
