@@ -33,9 +33,7 @@ class SessionController extends AbstractController
     #[Route('/session/{id}/programmer/{idModule}', name: 'programmer_module')]
     public function programmer($idModule, ManagerRegistry $doctrine, ValidatorInterface $validator, Programme $programme = null, Session $session, ModuleSession $module = null, Request $request)
     {
-        $submit = $request->request->get('submit');
-
-        if ($request->request->get('submit')) {
+        if (isset($_POST['submit'])) {
             $entityManager = $doctrine->getManager();
             // chercher objet module 
             $module = $entityManager->getRepository(ModuleSession::class)->findOneBy(['id' => $idModule]);

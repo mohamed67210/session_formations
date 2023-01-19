@@ -154,6 +154,13 @@ td {
     color: white;
     border-radius: 5px;
 }
+.special_btn{
+    position: absolute;
+    right: 0;
+}
+.special_btn:hover{
+    color: white;
+}
 
 .error {
     color: red;

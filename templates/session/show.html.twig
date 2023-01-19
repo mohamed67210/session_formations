@@ -6,6 +6,7 @@
 <div id="container">
     <h3>information sur la session : {{session.intituleSession}}</h3>
     <div class="detail_container session">
+        <label>Formation :{{session.formation}}</label>
         <label>Intitulé :{{session.intituleSession}}</label>
         <label>Date de debut :{{session.dateDebut |date("m/d/Y")}}</label>
         <label>Date de fin :{{session.dateFin |date("m/d/Y")}}</label>
@@ -50,6 +51,7 @@
             <div class="titre">
                 <h4>Ajouter Programmes </h4>
                 <div class="nombre">{{ModulesNonProgrammer|length}}</div>
+                <a class="special_btn" href="{{path('add_module_session')}}">nouveau module</a>
             </div>
             <table>
                 <thead>

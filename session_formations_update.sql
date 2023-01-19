@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 04 jan. 2023 à 10:54
+-- Généré le : jeu. 19 jan. 2023 à 14:53
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 8.0.2
 
@@ -31,6 +31,14 @@ CREATE TABLE `categorie_module` (
   `id` int(11) NOT NULL,
   `intitule_categorie` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `categorie_module`
+--
+
+INSERT INTO `categorie_module` (`id`, `intitule_categorie`) VALUES
+(1, 'bureautique'),
+(2, 'dev web');
 
 -- --------------------------------------------------------
 
@@ -65,6 +73,15 @@ CREATE TABLE `formateur` (
   `telephone_formateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `formateur`
+--
+
+INSERT INTO `formateur` (`id`, `nom_formateur`, `prenom_formateur`, `mail_formateur`, `telephone_formateur`) VALUES
+(1, 'MURMAAN', 'Mickael', 'mickael@elan.fr', 511544529),
+(4, 'bechri', 'mohamed', 'mohamed@hotmail.fr', 545000000),
+(5, 'bechri', 'Boulbaba', 'boulbaba@formation.fr', 625252500);
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +92,15 @@ CREATE TABLE `formation` (
   `id` int(11) NOT NULL,
   `intitule_formation` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `formation`
+--
+
+INSERT INTO `formation` (`id`, `intitule_formation`) VALUES
+(2, 'Developement des applications mobile'),
+(4, 'developpeur React JS'),
+(5, 'PHP Symfony');
 
 -- --------------------------------------------------------
 
@@ -104,6 +130,17 @@ CREATE TABLE `module_session` (
   `categorie_module_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `module_session`
+--
+
+INSERT INTO `module_session` (`id`, `intitule_module`, `categorie_module_id`) VALUES
+(1, 'HTML', 2),
+(2, 'CSS', 2),
+(3, 'PHP', 2),
+(4, 'Word', 1),
+(5, 'React js', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -116,6 +153,25 @@ CREATE TABLE `programme` (
   `session_id` int(11) DEFAULT NULL,
   `module_session_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `programme`
+--
+
+INSERT INTO `programme` (`id`, `duree`, `session_id`, `module_session_id`) VALUES
+(1, 2, NULL, 1),
+(4, 1, NULL, 4),
+(5, 15, NULL, 3),
+(9, 10, NULL, 1),
+(10, 3, NULL, 4),
+(11, 1, NULL, 4),
+(12, 0, NULL, 4),
+(15, 1, NULL, 2),
+(16, 3, 2, 4),
+(19, 2, 6, 1),
+(20, 2, 6, 2),
+(21, 10, 6, 3),
+(22, 10, 6, 5);
 
 -- --------------------------------------------------------
 
@@ -130,8 +186,16 @@ CREATE TABLE `session` (
   `date_debut` datetime NOT NULL,
   `date_fin` datetime NOT NULL,
   `formation_id` int(11) NOT NULL,
-  `formateur_id` int(11) NOT NULL
+  `formateur_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `session`
+--
+
+INSERT INTO `session` (`id`, `intitule_session`, `nombre_place`, `date_debut`, `date_fin`, `formation_id`, `formateur_id`) VALUES
+(2, 'session mars 2023', 10, '2023-03-05 00:00:00', '2023-06-25 00:00:00', 2, 1),
+(6, 'janvier', 3, '2023-01-02 00:00:00', '2023-02-03 00:00:00', 4, 4);
 
 -- --------------------------------------------------------
 
@@ -143,6 +207,16 @@ CREATE TABLE `session_stagiaire` (
   `session_id` int(11) NOT NULL,
   `stagiaire_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `session_stagiaire`
+--
+
+INSERT INTO `session_stagiaire` (`session_id`, `stagiaire_id`) VALUES
+(2, 2),
+(6, 1),
+(6, 2),
+(6, 6);
 
 -- --------------------------------------------------------
 
@@ -162,6 +236,16 @@ CREATE TABLE `stagiaire` (
   `mail_stagiaire` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telephone_stagiaire` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `stagiaire`
+--
+
+INSERT INTO `stagiaire` (`id`, `nom_stagiaire`, `prenom_stagiaire`, `date_naissance_stagiaire`, `sexe_stagiaire`, `ville_stagiaire`, `cp_stagiaire`, `adresse_stagiaire`, `mail_stagiaire`, `telephone_stagiaire`) VALUES
+(1, 'Mbappe', 'Kylian', '1998-12-22 12:52:04', 'homme', 'Paris', 93000, '9 rue de la foret', 'mbappePSG@elan.fr', 7894563),
+(2, 'cristiano', 'ronaldo', '1985-02-05 12:51:28', 'homme', 'Madera', 9000, 'Madera', 'ronaldo@elan.fr', 6568947),
+(6, 'Ben romdhan', 'mohamed ali', '1997-10-01 12:00:00', 'homme', 'tunis', 684455, 'rue tunis', 'daliEST@elan.fr', 225645656),
+(7, 'Smith', 'Will', '1981-01-19 13:51:00', 'homme', 'Floride', 0, 'USA', 'Smith@formation.fr', 789995502);
 
 --
 -- Index pour les tables déchargées
@@ -245,19 +329,19 @@ ALTER TABLE `stagiaire`
 -- AUTO_INCREMENT pour la table `categorie_module`
 --
 ALTER TABLE `categorie_module`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `formateur`
 --
 ALTER TABLE `formateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `formation`
 --
 ALTER TABLE `formation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `messenger_messages`
@@ -269,25 +353,25 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT pour la table `module_session`
 --
 ALTER TABLE `module_session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `programme`
 --
 ALTER TABLE `programme`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT pour la table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `stagiaire`
 --
 ALTER TABLE `stagiaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
