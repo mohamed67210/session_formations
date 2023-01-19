@@ -19,7 +19,7 @@
             {% for stagiaire in stagiaires %}
             <tr>
                 <th scope="row">{{stagiaire.id}}</th>
-                <td><a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire}}</a></td>
+                <td><a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire|upper}}</a></td>
                 <td>{{stagiaire.mailStagiaire}}</td>
                 <td>{{stagiaire.telephoneStagiaire}}</td>
                 <td>

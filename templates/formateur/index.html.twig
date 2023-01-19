@@ -17,7 +17,7 @@
         <tbody>
             {% for formateur in formateurs %}
             <tr>
-                <th>{{formateur}}</th>
+                <th>{{formateur|upper}}</th>
                 <td>{{formateur.mailFormateur}}</td>
                 <td>{{formateur.telephoneFormateur}}</td>
                 <td>

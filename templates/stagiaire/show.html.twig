@@ -7,7 +7,7 @@
     <h3>Fiche de stagiaire : {{stagiaire}}</h3>
 
     <div class="detail_container">
-        <label>Nom : {{stagiaire.nomStagiaire}}</label>
+        <label>Nom : {{stagiaire.nomStagiaire|upper}}</label>
         <label>Prenom : {{stagiaire.prenomStagiaire}}</label>
         <label>Sexe : {{stagiaire.sexeStagiaire}}</label>
         <label>Date de naissance : {{stagiaire.dateNaissanceStagiaire|date("m/d/Y")}}</label>

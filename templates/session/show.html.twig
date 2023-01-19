@@ -10,7 +10,7 @@
         <label>Intitulé :{{session.intituleSession}}</label>
         <label>Date de debut :{{session.dateDebut |date("m/d/Y")}}</label>
         <label>Date de fin :{{session.dateFin |date("m/d/Y")}}</label>
-        <label>Formateur : {{session.formateur}}</label>
+        <label>Formateur : {{session.formateur|upper}}</label>
         <label>nombre de place reservé : {{session.stagiaires|length}}/{{session.nombrePlace}}</label>
     </div>
 
