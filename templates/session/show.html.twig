@@ -68,7 +68,7 @@
                         <form action="{{path('programmer_module',{'id':session.id, 'idModule':module.id})}}"
                             method="POST">
                             <td>{{ module.intituleModule }}</td>
-                            <td><input type="number" name="duree"></td>
+                            <td><input type="number" name="duree" min="10" max="100"></td>
                             <td>{{ module.categorieModule }}</td>
                             <td><button type="submit" name="submit" value="submit" class="green">Programmer</button>
                             </td>
