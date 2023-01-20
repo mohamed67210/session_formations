@@ -28,33 +28,46 @@
     </div> #}
     <ul>
         {% if app.user %}
-            {% if app.user.isVerified %}
-                <li><a href="{{path ('list_formation')}}">Formations</a></li>
-                <li><a href="{{path ('list_session')}}"> Sessions</a></li>
-                <li><a href="{{path ('app_stagiaire')}}">Stagiaires</a></li>
-                <li><a href="{{path('list_formateur')}}">Formateurs</a></li>
-                <li><a href="{{path ('app_stagiaire')}}">mon Compte</a></li>
-                {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{path ('app_stagiaire')}}">Utilisateurs</a></li>
-                {% endif %}
-                <div>
-                    <a href="{{path ('app_logout')}}">Se deconnecté</a>
-                </div>
-                {% else %}Votre compte n'est pas encore verifié
-            {% endif %}
-            {% else %}
-            <li><a href="{{path ('app_login')}}">Se connecter</a></li>
-            <li><a href="{{path ('app_register')}}">S'enregistrer</a></li>
+        
+        {% if app.user.isVerified %}
+        <li><a href="{{path ('list_formation')}}">Formations</a></li>
+        <li><a href="{{path ('list_session')}}"> Sessions</a></li>
+        <li><a href="{{path ('app_stagiaire')}}">Stagiaires</a></li>
+        <li><a href="{{path('list_formateur')}}">Formateurs</a></li>
+        {# <li><a href="{{path ('app_stagiaire')}}">mon Compte</a></li> #}
+        {% if is_granted('ROLE_ADMIN') %}
+        {# <li><a href="{{path ('app_stagiaire')}}">Utilisateurs</a></li> #}
+        <li><a href="{{path ('app_register')}}">Enregistrer utilisateur</a></li>
         {% endif %}
 
+        {% else %}Votre compte n'est pas encore verifié
 
+        {% endif %}
+        <div>
+            <a href="{{path ('app_logout')}}">Se deconnecté</a>
+        </div>
+        {% else %}
+        <li><a href="{{path ('app_login')}}">Se connecter</a></li>
+        {% endif %}
     </ul>
 </nav>
 
 <body>
+    {% if app.user %}
+    {% if app.user.isVerified %}
     {% block body %}
-
     {% endblock %}
+    {% else %}<div id="container">
+        <div class="error">Vous devez activer votre compte en cliquant sur le lien réçu par mail 😄</div>
+    </div>
+    {% endif %}
+    {% else %}
+    {% block login %}
+    {% endblock %}
+    {% endif %}
+
+
+
 </body>
 
 </html>

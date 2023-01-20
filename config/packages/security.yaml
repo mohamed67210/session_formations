@@ -37,6 +37,8 @@ security:
         - { path: ^/formation, roles: ROLE_USER }
         - { path: ^/list, roles: ROLE_USER }
         - { path: ^/formateur, roles: ROLE_USER }
+        - { path: ^/register, roles: ROLE_ADMIN }
+
 
 
 

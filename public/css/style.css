@@ -335,8 +335,8 @@ h5 span {
 
 /* login form */
 #login_form_container {
-    width: 20rem;
-    height: 20rem;
+    width: 15rem;
+    height: 15rem;
     background-color:#77C3F2;
     padding: 5rem;
     border-radius: 50%;
@@ -353,4 +353,16 @@ h5 span {
 #login_form_container:hover{
     background-color: #6F91A6;
     transition: all 0.5s;
+}
+/* form signin */
+#signin_form_container{
+    width: 15rem;
+    height: 15rem;
+    background-color:#77C3F2;
+    padding: 5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
 }
