@@ -17,20 +17,34 @@
 </head>
 <nav>
     <div class="nav_left">
-        <p>hello <span>Mohamed</span></p>
+        {# si un user est connecter #}
+        {% if app.user %}
+        <p>hello <span>{{app.user.pseudo}}</span></p>
+        {% endif %}
+
     </div>
     {# <div class="nav_midle">
         <h1>Centre de Formation<h1>
     </div> #}
     <ul>
-        <li><a href="{{path ('list_formation')}}"> Formations</a></li>
+        {% if app.user %}
+        <li><a href="{{path ('list_formation')}}">Formations</a></li>
         <li><a href="{{path ('list_session')}}"> Sessions</a></li>
         <li><a href="{{path ('app_stagiaire')}}">Stagiaires</a></li>
         <li><a href="{{path('list_formateur')}}">Formateurs</a></li>
         <li><a href="{{path ('app_stagiaire')}}">mon Compte</a></li>
+        {% if is_granted('ROLE_ADMIN') %}
+        <li><a href="{{path ('app_stagiaire')}}">Utilisateurs</a></li>
+        {% endif %}
         <div>
-            <a href="#">Se deconnecté</a>
+            <a href="{{path ('app_logout')}}">Se deconnecté</a>
         </div>
+        {% else %}
+        <li><a href="{{path ('app_login')}}">Se connecter</a></li>
+        <li><a href="{{path ('app_register')}}">S'enregistrer</a></li>
+        {% endif %}
+
+
     </ul>
 </nav>
 
