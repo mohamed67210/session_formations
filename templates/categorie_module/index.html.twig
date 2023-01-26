@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des catégories{% endblock %}
+
+{% block body %}
+
+<div id="container">
+    <h1>Liste des Categories</h1>
+    <div id="inputes_container">
+        <h3>+ Categorie</h3><br>
+        {{form_start(categoryForm)}}
+        {{form_end(categoryForm)}}
+    </div>
+    <div class="listSession">
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">intitulé de la categorie</th>
+                    <th scope="col">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categorie in categories %}
+                <tr>
+                    <th scope="row">{{categorie.id}}</th>
+                    <td>{{categorie.intituleCategorie}}</td>
+                    <td>
+                        <div id="btn_container">
+                            <a class="green" href="{{path ('categorie_module',{'id':categorie.id})}}">Module</a>
+                            {# <a class="grey" href="{{path ('edit_formation',{'id':formation.id})}}">Edit</a>
+                            <a class="red" href="{{path('delete_formation',{'id':formation.id})}}">Supprimer</a> #}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if oneCategorie %}
+    <div class="detail_container">
+        <div class="titre">
+            <h4>{{oneCategorie}}: Modules </h4>
+            <div class="nombre">{{oneCategorie.moduleSessions|length}}</div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>intitulé</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for module in oneCategorie.moduleSessions %}
+                <tr>
+                    <td>{{module.id}}</td>
+                    <td>{{module.intituleModule}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    {% endblock %}

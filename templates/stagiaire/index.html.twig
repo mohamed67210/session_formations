@@ -1,37 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StagiaireController!{% endblock %}
+{% block title %}Liste des stagiares{% endblock %}
 
 {% block body %}
 <div id="container">
     <h1>Liste des stagiaires <a href="{{ path('add_stagiaire' )}}">+</a></h1>
-    <table class="table table-striped ">
-        <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">nom et prenom</th>
-                <th scope="col">mail</th>
-                <th scope="col">téléphne</th>
-                <th scope="col">détail</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for stagiaire in stagiaires %}
-            <tr>
-                <th scope="row">{{stagiaire.id}}</th>
-                <td><a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire|upper}}</a></td>
-                <td>{{stagiaire.mailStagiaire}}</td>
-                <td>{{stagiaire.telephoneStagiaire}}</td>
-                <td>
-                    <div id="btn_container">
-                        <a class="green" href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">Sessions</a>
-                        <a class="grey" href="{{ path('edit_stagiaire' , {'id':stagiaire.id} )}}">Edit</a>
-                        <a class="red" href="{{path('delete_stagiaire',{'id':stagiaire.id})}}">Supprimer</a>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="listSession">
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">nom et prenom</th>
+                    <th scope="col">mail</th>
+                    <th scope="col">téléphne</th>
+                    <th scope="col">détail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stagiaire in stagiaires %}
+                <tr>
+                    <th scope="row">{{stagiaire.id}}</th>
+                    <td><a href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">{{stagiaire|upper}}</a></td>
+                    <td>{{stagiaire.mailStagiaire}}</td>
+                    <td>{{stagiaire.telephoneStagiaire}}</td>
+                    <td>
+                        <div id="btn_container">
+                            <a class="green" href="{{ path('show_stagiaire' , {'id':stagiaire.id} )}}">Sessions</a>
+                            <a class="grey" href="{{ path('edit_stagiaire' , {'id':stagiaire.id} )}}">Edit</a>
+                            <a class="red" href="{{path('delete_stagiaire',{'id':stagiaire.id})}}">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

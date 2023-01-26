@@ -14,8 +14,8 @@
                     <th scope="col">Session</th>
                     {# <th scope="col">Statut</th> #}
                     <th scope="col">Formation</th>
-                    <th scope="col">Date de debut</th>
-                    <th scope="col">Date de fin</th>
+                    <th class="table_responsive" scope="col">Date de debut</th>
+                    <th class="table_responsive" scope="col">Date de fin</th>
                     <th scope="col">Place reservée</th>
                     <th scope="col">Porgramme</th>
                     <th scope="col">action</th>
@@ -35,8 +35,8 @@
                             <label class="red">Compléte</label>
                             {% endif %}</td> #}
                     <td>{{session.Formation}}</td>
-                    <td>{{session.dateDebut|date("m/d/Y")}}</td>
-                    <td>{{session.dateFin|date("m/d/Y")}}</td>
+                    <td class="table_responsive">{{session.dateDebut|date("m/d/Y")}}</td>
+                    <td class="table_responsive">{{session.dateFin|date("m/d/Y")}}</td>
                     <td>
                         {{session.stagiaires|length}}/{{session.nombrePlace}}
                     </td>
@@ -64,8 +64,8 @@
                     <th scope="col">Session</th>
                     <th scope="col">Statut</th>
                     <th scope="col">Formation</th>
-                    <th scope="col">Date de debut</th>
-                    <th scope="col">Date de fin</th>
+                    <th class="table_responsive" scope="col">Date de debut</th>
+                    <th class="table_responsive" scope="col">Date de fin</th>
                     <th scope="col">Place reservée</th>
                     <th scope="col">Porgramme</th>
                     <th scope="col">action</th>
@@ -84,8 +84,8 @@
                             <label class="red">Compléte</label>
                             {% endif %}
                     <td>{{session.Formation}}</td>
-                    <td>{{session.dateDebut|date("m/d/Y")}}</td>
-                    <td>{{session.dateFin|date("m/d/Y")}}</td>
+                    <td class="table_responsive">{{session.dateDebut|date("m/d/Y")}}</td>
+                    <td class="table_responsive">{{session.dateFin|date("m/d/Y")}}</td>
                     <td>
                         {{session.stagiaires|length}}/{{session.nombrePlace}}
                     </td>
@@ -113,8 +113,8 @@
                     <th scope="col">Session</th>
                     <th scope="col">Statut</th>
                     <th scope="col">Formation</th>
-                    <th scope="col">Date de debut</th>
-                    <th scope="col">Date de fin</th>
+                    <th class="table_responsive" scope="col">Date de debut</th>
+                    <th class="table_responsive" scope="col">Date de fin</th>
                     <th scope="col">Place reservée</th>
                     <th scope="col">Porgramme</th>
                     <th scope="col">action</th>
@@ -133,8 +133,8 @@
                             <label class="red">Compléte</label>
                             {% endif %}
                     <td>{{session.Formation}}</td>
-                    <td>{{session.dateDebut|date("m/d/Y")}}</td>
-                    <td>{{session.dateFin|date("m/d/Y")}}</td>
+                    <td class="table_responsive">{{session.dateDebut|date("m/d/Y")}}</td>
+                    <td class="table_responsive">{{session.dateFin|date("m/d/Y")}}</td>
                     <td>
                         {{session.stagiaires|length}}/{{session.nombrePlace}}
                     </td>

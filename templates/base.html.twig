@@ -2,72 +2,93 @@
 <html>
 
 <head>
+
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>{% block title %}Welcome!{% endblock %}</title>
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
-    {#
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> #}
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     {% endblock %}
 
 </head>
-<nav>
-    <div class="nav_left">
-        {# si un user est connecter #}
-        {% if app.user %}
-        <p>hello <span>{{app.user.pseudo}}</span></p>
-        {% endif %}
 
-    </div>
-    {# <div class="nav_midle">
-        <h1>Centre de Formation<h1>
-    </div> #}
-    <ul>
+
+{#
+
+<body> #}
+    <div id="wrapper">
+        <nav>
+            <div class="nav_left">
+                {# si un user est connecter #}
+                {% if app.user %}
+                <p>hello <span>{{app.user.pseudo}} 😃</span></p>
+                {% endif %}
+
+            </div>
+            <div id="menu_burger">
+                <div id="burger_top"></div>
+                <span class="l0"></span>
+                <span class="l1"></span>
+                <span class="l2"></span>
+                <span class="l3"></span>
+                <div id="burger_bottom"></div>
+            </div>
+            <ul id="menu_list">
+                {# si on est connecté #}
+                {% if app.user %}
+                {# si on est connecté et le compte est validé #}
+                {% if app.user.isVerified %}
+                <li><a class="link" href="{{path ('list_formation')}}">Formations</a></li>
+                <li><a class="link" href="{{path ('app_categorie')}}">Categories</a></li>
+                <li><a class="link" href="{{path ('list_session')}}"> Sessions</a></li>
+                <li><a class="link" href="{{path ('app_stagiaire')}}">Stagiaires</a></li>
+                <li><a class="link" href="{{path('list_formateur')}}">Formateurs</a></li>
+                {# si on est connecté entant que admin #}
+                {% if is_granted('ROLE_ADMIN') %}
+                {# <li><a class="link" href="{{path ('app_register')}}">Enregistrer utilisateur</a></li> #}
+                {% endif %}
+
+                {% else %}Votre compte n'est pas encore verifié
+
+                {% endif %}
+                <div>
+                    <a class="link" href="{{path ('app_logout')}}">Se deconnecté</a>
+                </div>
+                {% else %}
+                <li><a class="link" href="{{path ('app_login')}}">Se connecter</a></li>
+                <li><a class="link" href="{{path ('app_register')}}">Enregistrer utilisateur</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
         {% if app.user %}
-        
         {% if app.user.isVerified %}
-        <li><a href="{{path ('list_formation')}}">Formations</a></li>
-        <li><a href="{{path ('list_session')}}"> Sessions</a></li>
-        <li><a href="{{path ('app_stagiaire')}}">Stagiaires</a></li>
-        <li><a href="{{path('list_formateur')}}">Formateurs</a></li>
-        {# <li><a href="{{path ('app_stagiaire')}}">mon Compte</a></li> #}
-        {% if is_granted('ROLE_ADMIN') %}
-        {# <li><a href="{{path ('app_stagiaire')}}">Utilisateurs</a></li> #}
-        <li><a href="{{path ('app_register')}}">Enregistrer utilisateur</a></li>
-        {% endif %}
-
-        {% else %}Votre compte n'est pas encore verifié
-
-        {% endif %}
-        <div>
-            <a href="{{path ('app_logout')}}">Se deconnecté</a>
+        {% block body %}
+        {% endblock %}
+        {% else %}<div id="container">
+            <div class="error">Vous devez activer votre compte en cliquant sur le lien réçu par mail 😄</div>
         </div>
-        {% else %}
-        <li><a href="{{path ('app_login')}}">Se connecter</a></li>
         {% endif %}
-    </ul>
-</nav>
+        {% else %}
+        {% block login %}
+        {% endblock login %}
+        {% block register %}
 
-<body>
-    {% if app.user %}
-    {% if app.user.isVerified %}
-    {% block body %}
-    {% endblock %}
-    {% else %}<div id="container">
-        <div class="error">Vous devez activer votre compte en cliquant sur le lien réçu par mail 😄</div>
+        {% endblock register %}
+        {% endif %}
+
+
+        {% block javascripts %}
+        <script src="{{ asset('js/script.js')}}"></script>
+        {% endblock javascripts %}
     </div>
-    {% endif %}
-    {% else %}
-    {% block login %}
-    {% endblock %}
-    {% endif %}
+    <footer></footer>
 
+    {#
+</body> #}
 
-
-</body>
 
 </html>

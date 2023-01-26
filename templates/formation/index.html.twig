@@ -5,30 +5,32 @@
 {% block body %}
 <div id="container">
     <h1>Liste des formations <a href="{{path('add_formation')}}">+</a></h1>
-    <table class="table table-striped ">
-        <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">intitulé de la formation</th>
-                <th scope="col">action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for formation in formations %}
-            <tr>
-                <th scope="row">{{formation.id}}</th>
-                <td>{{formation.intituleFormation}}</td>
-                <td>
-                    <div id="btn_container">
-                        <a class="green" href="{{ path ('show_sessions',{'id':formation.id})}}">Sessions</a>
-                        <a class="grey" href="{{path ('edit_formation',{'id':formation.id})}}">Edit</a>
-                        <a class="red" href="{{path('delete_formation',{'id':formation.id})}}">Supprimer</a>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="listSession">
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">intitulé de la formation</th>
+                    <th scope="col">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for formation in formations %}
+                <tr>
+                    <th scope="row">{{formation.id}}</th>
+                    <td>{{formation.intituleFormation}}</td>
+                    <td>
+                        <div id="btn_container">
+                            <a class="green" href="{{ path ('show_sessions',{'id':formation.id})}}">Sessions</a>
+                            <a class="grey" href="{{path ('edit_formation',{'id':formation.id})}}">Edit</a>
+                            <a class="red" href="{{path('delete_formation',{'id':formation.id})}}">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {# affichage liste de session pour une formation en cliquant sur le bouton sessions #}
     {% if formationSessions %}
     <div id="list_session_formation">

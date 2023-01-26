@@ -5,32 +5,34 @@
 {% block body %}
 <div id="container">
     <h1>Liste des formateurs</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Foramateur</th>
-                <th>Mail</th>
-                <th>Téléphone</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for formateur in formateurs %}
-            <tr>
-                <th>{{formateur|upper}}</th>
-                <td>{{formateur.mailFormateur}}</td>
-                <td>{{formateur.telephoneFormateur}}</td>
-                <td>
-                    <div id="btn_container">
-                        <a class="green" href="{{path('list_sessionFormateur',{'id':formateur.id})}}">Sessions</a>
-                        {# <a class="grey" href="#">Edit</a> #}
-                        <a class="red" href="{{path('delete_formateur',{'id':formateur.id})}}">Supprimer</a>
-                    </div>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="listSession">
+        <table>
+            <thead>
+                <tr>
+                    <th>Foramateur</th>
+                    <th>Mail</th>
+                    <th>Téléphone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for formateur in formateurs %}
+                <tr>
+                    <th>{{formateur|upper}}</th>
+                    <td>{{formateur.mailFormateur}}</td>
+                    <td>{{formateur.telephoneFormateur}}</td>
+                    <td>
+                        <div id="btn_container">
+                            <a class="green" href="{{path('list_sessionFormateur',{'id':formateur.id})}}">Sessions</a>
+                            {# <a class="grey" href="#">Edit</a> #}
+                            <a class="red" href="{{path('delete_formateur',{'id':formateur.id})}}">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <div class="option">
         <div id="inputes_container">
             <h4>Nouveau Formateur </h4><br>
@@ -45,6 +47,7 @@
                 <h4>{{oneFormateur}} Sessions </h4>
                 <div class="nombre">{{oneFormateur.sessions|length}}</div>
             </div>
+
             <table>
                 <thead>
                     <tr>

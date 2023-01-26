@@ -26,15 +26,21 @@ class FormateurController extends AbstractController
 
     // supprimer formateur
     #[Route('/formateur/delete/{id}', name: 'delete_formateur')]
-    public function remove(ManagerRegistry $doctrine, Formateur $formateur, Session $session): Response
+    public function remove(ManagerRegistry $doctrine, Formateur $formateur, Session $session = null): Response
     {
 
         $formateurId = $formateur->getId();
         $entityManager = $doctrine->getManager();
         // recuperer tte les sessions de formateur qu'on veut supprimer
-        $sessions = $entityManager->getRepository(Session::class)->findAll($formateurId);
+        $formateurId = $formateur->getId();
+        // dd($entityManager->getRepository(Session::class));
+        $sessionFormateur = $entityManager->getRepository(Session::class)->findBy(["formateur" => $formateurId]);
+        // dd($sessions);
         // attribuer la valuer Null a formateur dans session
-        $session->setFormateur(Null);
+        foreach ($sessionFormateur as $session) {
+            $session->setFormateur(Null);
+        }
+
         //appeler la methode remove 
         $formateur = $entityManager->getRepository(Formateur::class)->remove($formateur);
         $entityManager->flush();

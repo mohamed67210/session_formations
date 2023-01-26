@@ -130,16 +130,23 @@ class SessionController extends AbstractController
         ]);
     }
     // pour afficher liste de sessions separer(en cours,a venir,passée)
-    #[Route('/list', name: 'list_session')]
+    #[Route('/', name: 'list_session')]
     public function list(SessionRepository $sr): Response
     {
-        $pastSessions = $sr->findPastSession();
-        $futurSessions = $sr->findFuturSession();
-        $progressSessions = $sr->findProgressSession();
-        return $this->render('session/listSessions.html.twig', [
-            'pastSession' => $pastSessions,
-            'futurSession' => $futurSessions,
-            'progressSession' => $progressSessions
-        ]);
+        // on mets rien devant / dans route pcq c la page home de notre site 
+        // verifier si on est connecté si non on va vers la page de connexion
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $pastSessions = $sr->findPastSession();
+            $futurSessions = $sr->findFuturSession();
+            $progressSessions = $sr->findProgressSession();
+            return $this->render('session/listSessions.html.twig', [
+                'pastSession' => $pastSessions,
+                'futurSession' => $futurSessions,
+                'progressSession' => $progressSessions
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 }

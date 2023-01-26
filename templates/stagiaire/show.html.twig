@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello !{% endblock %}
+{% block title %}Stagiare : {{stagiaire}}{% endblock %}
 
 {% block body %}
 <div id="container">
@@ -35,6 +35,7 @@
                     <th>date de debut</th>
                     <th>date de fin</th>
                     <th>Nombre place</th>
+                    <th>action</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,6 +47,10 @@
                     <td>{{session.dateDebut|date("m/d/Y")}}</td>
                     <td>{{session.dateFin|date("m/d/Y")}}</td>
                     <td>{{session.stagiaires|length}}/{{session.nombrePlace}}</td>
+                    <td><a class="red"
+                            href="{{ path('desinscrire_stagiaire' , {'id':session.id,'idStagiaire':stagiaire.id} )}}">Desinscrire</a>
+                    </td>
+
                     {% endfor %}
 
                 </tr>
