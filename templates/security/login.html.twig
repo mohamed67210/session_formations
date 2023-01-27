@@ -5,6 +5,9 @@
 {% block login %}
 <div id="login_container">
     <div id="login_form_container">
+        <div id="icon_container">
+            <i class="fa-solid fa-user"></i>
+        </div>
         <form method="post">
             {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
