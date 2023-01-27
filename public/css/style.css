@@ -13,9 +13,11 @@ body {
     background-color: #171F26;
     position: relative;
 }
-#wrapper{
+
+#wrapper {
     width: 100%;
 }
+
 a {
     color: #195073;
     font-style: italic;
@@ -61,7 +63,7 @@ nav ul {
     align-items: center;
     padding: 0.5rem;
     gap: 1rem;
-
+    margin-right: 3rem;
 }
 
 nav ul li {
@@ -197,14 +199,69 @@ nav ul li a {
     }
 
     #menu_list.open {
+        z-index: 99;
         right: 0;
         top: 5rem;
-        display: inline-block;
+        height: 20rem;
+        width: 15rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
         /* transform: translateY(-50%) translateX(0); */
         transition: all 1s;
+        margin: 0;
     }
-    #inputes_container{
-        width: 60%  !important;
+
+    #inputes_container {
+        width: 60% !important;
+    }
+
+    .listSession {
+        overflow: scroll !important;
+    }
+
+    #list_session_formation {
+        width: 95%;
+    }
+
+    .detail_container.session {
+        width: 80% !important;
+    }
+
+    h1 {
+        font-size: medium;
+    }
+
+    h3 {
+        font-size: small;
+    }
+
+    th,
+    td {
+        font-size: x-small;
+        padding: 0.2rem !important;
+    }
+
+    td {
+        color: black;
+    }
+
+    td a {
+        font-size: xx-small !important;
+    }
+
+    tbody tr {
+        
+    }
+
+    td label {
+        font-size: xx-small !important;
+    }
+
+    #btn_container a {
+        font-size: xx-small;
     }
 }
 
@@ -219,17 +276,19 @@ nav ul li a {
     align-items: center;
     gap: 3rem;
     /* background-color: #6f91a688; */
+    padding-top: 2rem;
 }
 
 .listSession {
     border: 1px solid white;
     padding: 1rem;
     /* background-color: #262626; */
-    width: 90%;
-    overflow:scroll;
+    width: 100%;
+    overflow: hidden;
     max-height: 300px;
     min-height: 150px;
 }
+
 
 h3,
 h4 {
@@ -261,15 +320,10 @@ table thead th {
     padding: 0.8rem;
 }
 
-tbody tr {
-    background-color: #77C3F2;
-    border-top: #171F26;
-}
-
 tr {
     color: white;
     background-color: #77C3F2 !important;
-    
+
 }
 
 td {
@@ -285,6 +339,7 @@ td {
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    border: none;
 }
 
 .red {
@@ -384,6 +439,7 @@ td {
     display: flex;
     flex-direction: column;
     width: 30%;
+    margin-top: 3rem;
 }
 
 .input_container {
@@ -405,13 +461,15 @@ td {
 
 /* pour page detail stagiaire et session */
 .detail_container {
-    /* margin-top: 2rem; */
+
     background-color: #6F91A6;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    /* justify-content: center; */
+    /* align-items: center; */
+    padding: 0.5rem;
     border-radius: 5px;
-    min-width: 40%;
+    width: 95%;
     box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
     -webkit-box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
     -moz-box-shadow: 1px 10px 5px -2px rgba(0, 0, 0, 0.42);
@@ -491,9 +549,10 @@ a {
 /* page formation */
 #list_session_formation {
     background-color: #77c3f273;
-    padding: 2rem;
+    padding: 0.5rem;
     border-radius: 5px;
     color: white;
+
 }
 
 h5 {
@@ -517,11 +576,11 @@ h5 span {
 }
 
 #login_form_container {
-    width: 15rem;
-    height: 15rem;
-    background-color: #77C3F2;
+    width: 20rem;
+    height: 25rem;
+    background-color: white;
     padding: 5rem;
-    border-radius: 50%;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -530,7 +589,13 @@ h5 span {
 #login_form_container form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+#login_form_container form label {
+    color: #77C3F2;
 }
 
 #login_form_container:hover {

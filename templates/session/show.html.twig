@@ -21,30 +21,33 @@
                 <h4>{{session.intituleSession}} Programmes </h4>
                 <div class="nombre">{{session.programmes|length}}</div>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Module</th>
-                        <th>Durée</th>
-                        <th>Categorie</th>
-                        <th>Action</th>
+            <div class="listSession">
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for programme in session.programmes %}
-                    <tr>
-                        <td>{{ programme.moduleSession }}</td>
-                        <td>{{ programme.duree }}</td>
-                        <td>{{ programme.moduleSession.getCategorieModule() }}</td>
-                        <td><a href="{{path('deprogrammer_module',{'id':session.id,'idProgramme':programme.id})}}"
-                                class="red">Deprogrammer</a></td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Durée</th>
+                            <th>Categorie</th>
+                            <th>Action</th>
 
-                    </tr>
-                    {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for programme in session.programmes %}
+                        <tr>
+                            <td>{{ programme.moduleSession }}</td>
+                            <td>{{ programme.duree }}</td>
+                            <td>{{ programme.moduleSession.getCategorieModule() }}</td>
+                            <td><a href="{{path('deprogrammer_module',{'id':session.id,'idProgramme':programme.id})}}"
+                                    class="red">Deprogrammer</a></td>
 
-                </tbody>
-            </table>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
         </div>
         {# liste des programmes qui ne sont pas dans la session#}
         <div class="detail_container">
@@ -53,31 +56,33 @@
                 <div class="nombre">{{ModulesNonProgrammer|length}}</div>
                 <a class="special_btn" href="{{path('add_module_session')}}">nouveau module</a>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Module</th>
-                        <th>Durée</th>
-                        <th>Categorie</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for module in ModulesNonProgrammer %}
-                    <tr>
-                        <form action="{{path('programmer_module',{'id':session.id, 'idModule':module.id})}}"
-                            method="POST">
-                            <td>{{ module.intituleModule }}</td>
-                            <td><input type="number" name="duree" min="1" max="100"></td>
-                            <td>{{ module.categorieModule }}</td>
-                            <td><button type="submit" name="submit" value="submit" class="green">Programmer</button>
-                            </td>
-                        </form>
-                    </tr>
-                    {% endfor %}
+            <div class="listSession">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Durée</th>
+                            <th>Categorie</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for module in ModulesNonProgrammer %}
+                        <tr>
+                            <form action="{{path('programmer_module',{'id':session.id, 'idModule':module.id})}}"
+                                method="POST">
+                                <td>{{ module.intituleModule }}</td>
+                                <td><input type="number" name="duree" min="1" max="100"></td>
+                                <td>{{ module.categorieModule }}</td>
+                                <td><button type="submit" name="submit" value="submit" class="green">Programmer</button>
+                                </td>
+                            </form>
+                        </tr>
+                        {% endfor %}
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="option">

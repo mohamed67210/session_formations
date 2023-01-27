@@ -14,8 +14,8 @@ class FormationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('intituleFormation', TextType::class, ['label' => 'intitulé de la formation'])
-            ->add('submit', SubmitType::class, ['attr' => ['class' => 'btn btn-success'], 'label' => 'Enregistrer']);
+            ->add('intituleFormation', TextType::class, ['attr' => ['class' => 'input']])
+            ->add('submit', SubmitType::class, ['attr' => ['class' => 'green'], 'label' => 'Enregistrer']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

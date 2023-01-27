@@ -26,36 +26,38 @@
             <h4>Sessions </h4>
             <div class="nombre">{{stagiaire.sessions|length}}</div>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Formation</th>
-                    <th>Session</th>
-                    {# <th>statut</th> #}
-                    <th>date de debut</th>
-                    <th>date de fin</th>
-                    <th>Nombre place</th>
-                    <th>action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for session in stagiaire.sessions %}
-                <tr>
-                    <th>{{session.formation}}</th>
-                    <td><a href="{{path('show_session',{'id':session.id})}}">{{session.intituleSession}}</a></td>
-                    {# <td>{{session}}</td> #}
-                    <td>{{session.dateDebut|date("m/d/Y")}}</td>
-                    <td>{{session.dateFin|date("m/d/Y")}}</td>
-                    <td>{{session.stagiaires|length}}/{{session.nombrePlace}}</td>
-                    <td><a class="red"
-                            href="{{ path('desinscrire_stagiaire' , {'id':session.id,'idStagiaire':stagiaire.id} )}}">Desinscrire</a>
-                    </td>
+        <div class="listSession">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Formation</th>
+                        <th>Session</th>
+                        {# <th>statut</th> #}
+                        <th>date de debut</th>
+                        <th>date de fin</th>
+                        <th>Nombre place</th>
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for session in stagiaire.sessions %}
+                    <tr>
+                        <th>{{session.formation}}</th>
+                        <td><a href="{{path('show_session',{'id':session.id})}}">{{session.intituleSession}}</a></td>
+                        {# <td>{{session}}</td> #}
+                        <td>{{session.dateDebut|date("m/d/Y")}}</td>
+                        <td>{{session.dateFin|date("m/d/Y")}}</td>
+                        <td>{{session.stagiaires|length}}/{{session.nombrePlace}}</td>
+                        <td><a class="red"
+                                href="{{ path('desinscrire_stagiaire' , {'id':session.id,'idStagiaire':stagiaire.id} )}}">Desinscrire</a>
+                        </td>
 
-                    {% endfor %}
+                        {% endfor %}
 
-                </tr>
-            </tbody>
-        </table>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

@@ -5,6 +5,11 @@
 {% block body %}
 <div id="container">
     <h1>Liste des formateurs</h1>
+    <div id="inputes_container">
+        <h4>Nouveau Formateur </h4><br>
+        {{form_start(formAddFormateur)}}
+        {{form_end(formAddFormateur)}}
+    </div>
     <div class="listSession">
         <table>
             <thead>
@@ -34,11 +39,7 @@
         </table>
     </div>
     <div class="option">
-        <div id="inputes_container">
-            <h4>Nouveau Formateur </h4><br>
-            {{form_start(formAddFormateur)}}
-            {{form_end(formAddFormateur)}}
-        </div>
+
         {# pour afficher lesite de sessions d'un formateur #}
         {% if oneFormateur %}
         <div class="detail_container">
@@ -47,31 +48,32 @@
                 <h4>{{oneFormateur}} Sessions </h4>
                 <div class="nombre">{{oneFormateur.sessions|length}}</div>
             </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Formation</th>
-                        <th>Session</th>
-                        {# <th>statut</th> #}
-                        <th>date de debut</th>
-                        <th>date de fin</th>
-                        <th>Nombre place</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for session in oneFormateur.sessions %}
-                    <tr>
-                        <th>{{session.formation}}</th>
-                        <td><a href="">{{session.intituleSession}}</a></td>
-                        {# <td>{{session}}</td> #}
-                        <td>{{session.dateDebut|date("m/d/Y")}}</td>
-                        <td>{{session.dateFin|date("m/d/Y")}}</td>
-                        <td>{{session.stagiaires|length}}/{{session.nombrePlace}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="listSession">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Formation</th>
+                            <th>Session</th>
+                            {# <th>statut</th> #}
+                            <th>date de debut</th>
+                            <th>date de fin</th>
+                            <th>Nombre place</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for session in oneFormateur.sessions %}
+                        <tr>
+                            <th>{{session.formation}}</th>
+                            <td><a href="">{{session.intituleSession}}</a></td>
+                            {# <td>{{session}}</td> #}
+                            <td>{{session.dateDebut|date("m/d/Y")}}</td>
+                            <td>{{session.dateFin|date("m/d/Y")}}</td>
+                            <td>{{session.stagiaires|length}}/{{session.nombrePlace}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
         {% endif %}
 
