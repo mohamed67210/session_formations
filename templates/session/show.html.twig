@@ -109,8 +109,10 @@
             {% for nonInscrit in stagiairesNonInscrit %}
             <div class="stagiaire_container">
                 <a href="{{ path('show_stagiaire' , {'id':nonInscrit.id} )}}">{{nonInscrit}}</a>
-                {% if session.stagiaires|length < session.nombrePlace %} <a class="inscrire_btn"
-                    href="{{ path('inscrire_stagiaire', {'id':session.id , 'idStagiaire':nonInscrit.id} )}}">+</a>
+                {% if session.stagiaires|length < session.nombrePlace %} {% if session.dateFin |date("m/d/Y")>
+                    'now'|date("m/d/Y") %} <a class="inscrire_btn"
+                        href="{{ path('inscrire_stagiaire', {'id':session.id , 'idStagiaire':nonInscrit.id} )}}">+</a>
+                    {% endif %}
                     {% endif %}
             </div>
             {% endfor %}
