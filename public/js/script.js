@@ -41,7 +41,6 @@ mode.addEventListener('click', function () {
         sun.classList.add('close')
         moon.classList.add('open')
         localStorage.setItem("theme", "light");
-
     }
 })
 // si le theme est light
